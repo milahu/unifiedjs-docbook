@@ -1,6 +1,6 @@
 /**
  * @typedef {import('./types.js').SelectState} SelectState
- * @typedef {import('./types.js').HastNode} HastNode
+ * @typedef {import('./types.js').XastNode} XastNode
  * @typedef {import('./types.js').ElementChild} ElementChild
  * @typedef {import('./types.js').Direction} Direction
  * @typedef {import('unist-util-visit/complex-types').Visitor<ElementChild>} Visitor
@@ -15,7 +15,7 @@ import {element} from './util.js'
 
 /**
  * @param {SelectState} state
- * @param {HastNode} node
+ * @param {XastNode} node
  * @returns {() => void}
  */
 // eslint-disable-next-line complexity

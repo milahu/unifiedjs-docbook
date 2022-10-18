@@ -1,6 +1,6 @@
 /**
  * @typedef {import('./types.js').Rule} Rule
- * @typedef {import('./types.js').HastNode} HastNode
+ * @typedef {import('./types.js').XastNode} XastNode
  * @typedef {import('./types.js').Element} Element
  * @typedef {import('./types.js').Parent} Parent
  * @typedef {import('./types.js').SelectState} SelectState
@@ -16,7 +16,7 @@ import {element} from './util.js'
 
 /**
  * @param {Rule} query
- * @param {HastNode} node
+ * @param {XastNode} node
  * @param {number|null} index
  * @param {Parent|null} parent
  * @param {SelectState} state

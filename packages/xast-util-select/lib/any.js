@@ -3,7 +3,7 @@
  * @typedef {import('./types.js').Selectors} Selectors
  * @typedef {import('./types.js').Rule} Rule
  * @typedef {import('./types.js').RuleSet} RuleSet
- * @typedef {import('./types.js').HastNode} HastNode
+ * @typedef {import('./types.js').XastNode} XastNode
  * @typedef {import('./types.js').SelectIterator} SelectIterator
  * @typedef {import('./types.js').SelectState} SelectState
  */
@@ -25,7 +25,7 @@ const type = zwitch('type', {
 
 /**
  * @param {Selectors|RuleSet|Rule} query
- * @param {HastNode|undefined} node
+ * @param {XastNode|undefined} node
  * @param {SelectState} state
  * @returns {Array<Element>}
  */
@@ -36,7 +36,7 @@ export function any(query, node, state) {
 
 /**
  * @param {Selectors} query
- * @param {HastNode} node
+ * @param {XastNode} node
  * @param {SelectState} state
  * @returns {Array<Element>}
  */
@@ -53,7 +53,7 @@ function selectors(query, node, state) {
 
 /**
  * @param {RuleSet} query
- * @param {HastNode} node
+ * @param {XastNode} node
  * @param {SelectState} state
  * @returns {Array<Element>}
  */
@@ -63,7 +63,7 @@ function ruleSet(query, node, state) {
 
 /**
  * @param {Rule} query
- * @param {HastNode} tree
+ * @param {XastNode} tree
  * @param {SelectState} state
  * @returns {Array<Element>}
  */
