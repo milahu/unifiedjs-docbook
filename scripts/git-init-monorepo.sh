@@ -34,6 +34,10 @@ git commit -m "mv rehype/packages/rehype-parse/ parse/"
 
 r=select
 u=https://github.com/syntax-tree/hast-util-select
+p=xast-util-select
 git remote add $r $u &&
 git fetch $r main --depth 1 &&
-git merge $r/main --allow-unrelated-histories -m "merge $u"
+git merge $r/main --allow-unrelated-histories -m "merge $u" &&
+mkdir packages/$p &&
+git mv .editorconfig  .github     index.js  license       .npmrc readme.md  test .gitignore  lib        package.json .prettierignore tsconfig.json packages/$p/ &&
+git commit -m "mv / to packages/$p/"
