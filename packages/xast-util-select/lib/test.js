@@ -26,7 +26,7 @@ export function test(query, node, index, parent, state) {
   return Boolean(
     element(node) &&
       state.schema &&
-      (!query.tagName || name(query, node)) &&
+      (!query.name || name(query, node)) &&
       (!query.classNames || className(query, node)) &&
       (!query.id || id(query, node)) &&
       (!query.attrs || attribute(query, node, state.schema)) &&

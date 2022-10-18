@@ -140,7 +140,7 @@ function indexedSearch(query, parent, state, from, firstElementOnly) {
   if (state.index) {
     while (++index < from) {
       const child = children[index]
-      if (element(child)) count(child.tagName)
+      if (element(child)) count(child.name)
     }
   }
 
@@ -174,11 +174,11 @@ function indexedSearch(query, parent, state, from, firstElementOnly) {
    */
   function delay(node, childIndex) {
     const elementsBefore = elements
-    const elementsByTypeBefore = own.call(types, node.tagName)
-      ? types[node.tagName]
+    const elementsByTypeBefore = own.call(types, node.name)
+      ? types[node.name]
       : 0
 
-    count(node.tagName)
+    count(node.name)
 
     delayed.push(fn)
 
@@ -189,7 +189,7 @@ function indexedSearch(query, parent, state, from, firstElementOnly) {
 
       // After counting all elements.
       state.elementCount = elements
-      state.typeCount = types[node.tagName]
+      state.typeCount = types[node.name]
 
       add(node, childIndex)
     }
