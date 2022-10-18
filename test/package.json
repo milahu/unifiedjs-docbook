@@ -10,7 +10,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
+  "devDependencies": {
     "assert": "^2.0.0",
     "hast-util-select": "^5.0.2",
     "remark-stringify": "^10.0.0",
