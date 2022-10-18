@@ -1,4 +1,4 @@
-## Attribute-Set Functions
+# Attribute-Set Functions
 
 ## `lib.attrset.attrByPath`
 
@@ -24,7 +24,9 @@ Default value if `attrPath` does not resolve to an existing value.
 
 The nested attributeset to select values from.
 
-### Example: Extracting a value from a nested attribute set
+### Examples
+
+#### Extracting a value from a nested attribute set
 
 ```nix
 let set = { a = { b = 3; }; };
@@ -35,7 +37,7 @@ in lib.attrsets.attrByPath [ "a" "b" ] 0 set
 3
 ```
 
-### Example: No value at the path, instead using the default
+#### No value at the path, instead using the default
 
 ```nix
 lib.attrsets.attrByPath [ "a" "b" ] 0 {}
@@ -65,7 +67,9 @@ A list of strings representing the path through the nested attribute set `set`.
 
 The nested attributeset to check.
 
-### Example: A nested value does exist inside a set
+### Examples
+
+#### A nested value does exist inside a set
 
 ```nix
 lib.attrsets.hasAttrByPath
@@ -97,7 +101,9 @@ A list of strings representing the path through the nested attribute set.
 
 The value to set at the location described by `attrPath`.
 
-### Example: Creating a new nested attribute set
+### Examples
+
+#### Creating a new nested attribute set
 
 ```nix
 lib.attrsets.setAttrByPath [ "a" "b" ] 3
@@ -127,7 +133,9 @@ A list of strings representing the path through the nested attribute set `set`.
 
 The nested attribute set to find the value in.
 
-### Example: Succesfully getting a value from an attribute set
+### Examples
+
+#### Succesfully getting a value from an attribute set
 
 ```nix
 lib.attrsets.getAttrFromPath [ "a" "b" ] { a = { b = 3; }; }
@@ -137,7 +145,7 @@ lib.attrsets.getAttrFromPath [ "a" "b" ] { a = { b = 3; }; }
 3
 ```
 
-### Example: Throwing after failing to get a value from an attribute set
+#### Throwing after failing to get a value from an attribute set
 
 ```nix
 lib.attrsets.getAttrFromPath [ "x" "y" ] { }
@@ -167,7 +175,9 @@ The list of attributes to fetch from `set`. Each attribute name must exist on th
 
 The set to get attribute values from.
 
-### Example: Getting several values from an attribute set
+### Examples
+
+#### Getting several values from an attribute set
 
 ```nix
 lib.attrsets.attrVals [ "a" "b" "c" ] { a = 1; b = 2; c = 3; }
@@ -177,7 +187,7 @@ lib.attrsets.attrVals [ "a" "b" "c" ] { a = 1; b = 2; c = 3; }
 [ 1 2 3 ]
 ```
 
-### Example: Getting missing values from an attribute set
+#### Getting missing values from an attribute set
 
 ```nix
 lib.attrsets.attrVals [ "d" ] { }
@@ -202,7 +212,9 @@ Provides a backwards-compatible interface of `builtins.attrValues` for Nix versi
 
 The attribute set.
 
-### Example:
+### Examples
+
+####
 
 ```nix
 lib.attrsets.attrValues { a = 1; b = 2; c = 3; }
@@ -234,7 +246,9 @@ Attribute name to select from each attribute set in `sets`.
 
 The list of attribute sets to select `attr` from.
 
-### Example: Collect an attribute from a list of attribute sets.
+### Examples
+
+#### Collect an attribute from a list of attribute sets.
 
 ```nix
 catAttrs "a" [{a = 1;} {b = 0;} {a = 2;}]
@@ -270,7 +284,9 @@ Returns true to include the attribute, false to exclude the attribute.
 
 The attribute set to filter
 
-### Example: Filtering an attributeset
+### Examples
+
+#### Filtering an attributeset
 
 ```nix
 filterAttrs (n: v: n == "foo") { foo = 1; bar = 2; }
@@ -306,7 +322,9 @@ Returns true to include the attribute, false to exclude the attribute.
 
 The attribute set to filter
 
-### Example: Recursively filtering an attribute set
+### Examples
+
+#### Recursively filtering an attribute set
 
 ```nix
 lib.attrsets.filterAttrsRecursive
@@ -366,7 +384,9 @@ The null-value, the starting value.
 
 A list of attribute sets to fold together by key.
 
-### Example: Combining an attribute of lists in to one attribute set
+### Examples
+
+#### Combining an attribute of lists in to one attribute set
 
 ```nix
 lib.attrsets.foldAttrs
@@ -406,7 +426,9 @@ Given an attribute's value, determine if recursion should stop.
 
 The attribute set to recursively collect.
 
-### Example: Collecting all lists from an attribute set
+### Examples
+
+#### Collecting all lists from an attribute set
 
 ```nix
 lib.attrsets.collect isList { a = { b = ["b"]; }; c = [1]; }
@@ -416,7 +438,7 @@ lib.attrsets.collect isList { a = { b = ["b"]; }; c = [1]; }
 [["b"] [1]]
 ```
 
-### Example: Collecting all attribute-sets which contain the outPath attribute name.
+#### Collecting all attribute-sets which contain the outPath attribute name.
 
 ```nix
 collect (x: x ? outPath)
@@ -447,7 +469,9 @@ The attribute name.
 
 The attribute value.
 
-### Example: Creating a name value pair
+### Examples
+
+#### Creating a name value pair
 
 ```nix
 nameValuePair "some" 6
@@ -478,7 +502,9 @@ Given an attribute's name and value, return a new value.
 
 `name` The name of the attribute.`value` The attribute's value.
 
-### Example: Modifying each value of an attribute set
+### Examples
+
+#### Modifying each value of an attribute set
 
 ```nix
 lib.attrsets.mapAttrs
@@ -514,7 +540,9 @@ Given an attribute's name and value, return a new .
 
 The attribute set to map over.
 
-### Example: Change the name and value of each attribute of an attribute set
+### Examples
+
+#### Change the name and value of each attribute of an attribute set
 
 ```nix
 lib.attrsets.mapAttrs' (name: value: lib.attrsets.nameValuePair ("foo_" + name) ("bar-" + value))
@@ -549,7 +577,9 @@ Given an attribute's name and value, return a new value.
 
 The attribute set to map over.
 
-### Example: Combine attribute values and names in to a list
+### Examples
+
+#### Combine attribute values and names in to a list
 
 ```nix
 lib.attrsets.mapAttrsToList (name: value: "${name}=${value}")
@@ -584,7 +614,9 @@ Given a list of attribute names and value, return a new value.
 
 The attribute set to recursively map over.
 
-### Example: A contrived example of using `lib.attrsets.mapAttrsRecursive`
+### Examples
+
+#### A contrived example of using `lib.attrsets.mapAttrsRecursive`
 
 ```nix
 mapAttrsRecursive
@@ -646,7 +678,9 @@ Given a list of attribute names and value, return a new value.
 
 The attribute set to recursively map over.
 
-### Example: Only convert attribute values to JSON if the containing attribute set is marked for recursion
+### Examples
+
+#### Only convert attribute values to JSON if the containing attribute set is marked for recursion
 
 ```nix
 lib.attrsets.mapAttrsRecursiveCond
@@ -697,7 +731,9 @@ Takes the name of the attribute and return the attribute's value.
 
 `name` The name of the attribute to generate a value for.
 
-### Example: Generate an attrset based on names only
+### Examples
+
+#### Generate an attrset based on names only
 
 ```nix
 lib.attrsets.genAttrs [ "foo" "bar" ] (name: "x_${name}")
@@ -723,7 +759,9 @@ Check whether the argument is a derivation. Any set with `{ type = "derivation";
 
 The value which is possibly a derivation.
 
-### Example: A package is a derivation
+### Examples
+
+#### A package is a derivation
 
 ```nix
 lib.attrsets.isDerivation (import <nixpkgs> {}).ruby
@@ -733,7 +771,7 @@ lib.attrsets.isDerivation (import <nixpkgs> {}).ruby
 true
 ```
 
-### Example: Anything else is not a derivation
+#### Anything else is not a derivation
 
 ```nix
 lib.attrsets.isDerivation "foobar"
@@ -779,7 +817,9 @@ Condition under which the `as` attribute set is returned.
 
 The attribute set to return if `cond` is true.
 
-### Example: Return the provided attribute set when `cond` is true
+### Examples
+
+#### Return the provided attribute set when `cond` is true
 
 ```nix
 lib.attrsets.optionalAttrs true { my = "set"; }
@@ -789,7 +829,7 @@ lib.attrsets.optionalAttrs true { my = "set"; }
 { my = "set"; }
 ```
 
-### Example: Return an empty attribute set when `cond` is false
+#### Return an empty attribute set when `cond` is false
 
 ```nix
 lib.attrsets.optionalAttrs false { my = "set"; }
@@ -827,7 +867,9 @@ Accepts an attribute name, all the values, and returns a combined value.
 
 A list of attribute sets to zip together.
 
-### Example: Summing a list of attribute sets of numbers
+### Examples
+
+#### Summing a list of attribute sets of numbers
 
 ```nix
 lib.attrsets.zipAttrsWithNames
@@ -869,7 +911,9 @@ Accepts an attribute name, all the values, and returns a combined value.
 
 A list of attribute sets to zip together.
 
-### Example: Summing a list of attribute sets of numbers
+### Examples
+
+#### Summing a list of attribute sets of numbers
 
 ```nix
 lib.attrsets.zipAttrsWith
@@ -902,7 +946,9 @@ Merge sets of attributes and combine each attribute value in to a list. Similar 
 
 A list of attribute sets to zip together.
 
-### Example: Combining a list of attribute sets
+### Examples
+
+#### Combining a list of attribute sets
 
 ```nix
 lib.attrsets.zipAttrs
@@ -944,7 +990,9 @@ The left hand attribute set of the merge.
 
 The right hand attribute set of the merge.
 
-### Example: Recursively merging two attribute sets
+### Examples
+
+#### Recursively merging two attribute sets
 
 ```nix
 lib.attrsets.recursiveUpdateUntil (path: l: r: path == ["foo"])
@@ -991,7 +1039,9 @@ The left hand attribute set of the merge.
 
 The right hand attribute set of the merge.
 
-### Example: Recursively merging two attribute sets
+### Examples
+
+#### Recursively merging two attribute sets
 
 ```nix
 recursiveUpdate
@@ -1029,7 +1079,9 @@ This function only affects a single attribute set; it does not apply itself recu
 
 An attribute set to scan for derivations.
 
-### Example: Making Nix look inside an attribute set
+### Examples
+
+#### Making Nix look inside an attribute set
 
 ```nix
 { pkgs ? import <nixpkgs> {} }:
@@ -1056,7 +1108,9 @@ Return the cartesian product of attribute set value combinations.
 
 An attribute set with attributes that carry lists of values.
 
-### Example: Creating the cartesian product of a list of attribute values
+### Examples
+
+#### Creating the cartesian product of a list of attribute values
 
 ```nix
 cartesianProductOfSets { a = [ 1 2 ]; b = [ 10 20 ]; }
