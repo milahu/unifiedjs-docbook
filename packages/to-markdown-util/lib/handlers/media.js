@@ -23,7 +23,7 @@ export function media(h, node) {
   let nodes = all(h, node)
   /** @type {Properties} */
   // @ts-expect-error: `props` are defined.
-  const properties = node.properties
+  const properties = node.attributes
   const poster = video(node) && String(properties.poster || '')
   let src = String(properties.src || '')
   let index = -1
@@ -64,7 +64,7 @@ export function media(h, node) {
   return {
     type: 'link',
     // @ts-expect-error Types are broken.
-    title: node.properties.title || null,
+    title: node.attributes.title || null,
     url: resolve(h, src),
     // @ts-expect-error Assume phrasing content.
     children: nodes

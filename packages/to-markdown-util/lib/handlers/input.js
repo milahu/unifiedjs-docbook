@@ -21,7 +21,7 @@ const datalist = convertElement('datalist')
 export function input(h, node) {
   /** @type {Properties} */
   // @ts-expect-error: `props` are defined.
-  const props = node.properties
+  const props = node.attributes
   let value = String(props.value || props.placeholder || '')
   /** @type {Array<MdastNode>} */
   const results = []

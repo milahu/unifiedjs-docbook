@@ -14,7 +14,7 @@ import {resolve} from '../util/resolve.js'
 export function a(h, node) {
   /** @type {Properties} */
   // @ts-expect-error: `props` are defined.
-  const props = node.properties
+  const props = node.attributes
   return h(
     node,
     'link',

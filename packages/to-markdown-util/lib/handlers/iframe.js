@@ -14,7 +14,7 @@ import {wrapText} from '../util/wrap-text.js'
 export function iframe(h, node) {
   /** @type {Properties} */
   // @ts-expect-error: `props` are defined.
-  const props = node.properties
+  const props = node.attributes
   const src = String(props.src || '')
   const title = String(props.title || '')
 

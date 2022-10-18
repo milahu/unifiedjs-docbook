@@ -17,10 +17,10 @@ export function tableCell(h, node) {
 
   const result = h(node, 'tableCell', all(h, node))
 
-  if (node.properties && (node.properties.rowSpan || node.properties.colSpan)) {
+  if (node.attributes && (node.attributes.rowSpan || node.attributes.colSpan)) {
     const data = result.data || (result.data = {})
-    if (node.properties.rowSpan) data.rowSpan = node.properties.rowSpan
-    if (node.properties.colSpan) data.colSpan = node.properties.colSpan
+    if (node.attributes.rowSpan) data.rowSpan = node.attributes.rowSpan
+    if (node.attributes.colSpan) data.colSpan = node.attributes.colSpan
   }
 
   h.wrapText = wrap

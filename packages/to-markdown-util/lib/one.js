@@ -21,7 +21,7 @@ export function one(h, node, parent) {
   let fn
 
   if (node.type === 'element') {
-    if (node.properties && node.properties.dataMdast === 'ignore') {
+    if (node.attributes && node.attributes.dataMdast === 'ignore') {
       return
     }
 

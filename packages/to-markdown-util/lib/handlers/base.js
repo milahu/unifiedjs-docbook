@@ -10,7 +10,7 @@
 export function base(h, node) {
   if (!h.baseFound) {
     h.frozenBaseUrl =
-      String((node.properties && node.properties.href) || '') || null
+      String((node.attributes && node.attributes.href) || '') || null
     h.baseFound = true
   }
 }

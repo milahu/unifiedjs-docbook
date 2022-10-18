@@ -100,9 +100,9 @@ export function toMdast(tree, options = {}) {
 
   visit(tree, 'element', (node) => {
     const id =
-      node.properties &&
-      'id' in node.properties &&
-      String(node.properties.id).toUpperCase()
+      node.attributes &&
+      'id' in node.attributes &&
+      String(node.attributes.id).toUpperCase()
 
     if (id && !own.call(byId, id)) {
       byId[id] = node

@@ -22,7 +22,7 @@ const option = convertElement('option')
 export function findSelectedOptions(h, node, properties) {
   /** @type {Properties} */
   // @ts-expect-error: `props` exist.
-  const props = properties || node.properties
+  const props = properties || node.attributes
   let options = findOptions(node)
   const size =
     Math.min(Number.parseInt(String(props.size), 10), 0) ||

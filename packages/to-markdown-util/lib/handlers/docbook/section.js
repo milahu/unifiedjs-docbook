@@ -33,7 +33,7 @@ export function section(h, node) {
   }
   titleCounter++
   /** @type {string | undefined} */
-  const id = node.properties && node.properties['xml:id']
+  const id = node.attributes && node.attributes['xml:id']
   // TODO section id
   //console.dir({title}); throw new Error('TODO')
   // remove title

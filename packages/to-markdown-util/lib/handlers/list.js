@@ -23,7 +23,7 @@ export function list(h, node) {
   if (ordered) {
     start = hasProperty(node, 'start')
       ? // @ts-expect-error: `props` exist.
-        Number.parseInt(String(node.properties.start), 10)
+        Number.parseInt(String(node.attributes.start), 10)
       : 1
   }
 
