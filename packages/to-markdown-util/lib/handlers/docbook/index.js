@@ -411,7 +411,12 @@ docbookHandlers['example'] = (h, node) => {
   if (programlisting.includes('\n=> ')) {
     const [input, output] = programlisting.split('\n=> ')
     result.push(h(node, 'code', {lang: 'nix'}, input))
-    result.push(h(node, 'code', {lang: 'nix'}, output))
+    if (output.startsWith('error:')) {
+      result.push(h(node, 'code', output))
+    }
+    else {
+      result.push(h(node, 'code', {lang: 'nix'}, output))
+    }
   }
   else {
     result.push(h(node, 'code', {lang: 'nix'}, programlisting))
