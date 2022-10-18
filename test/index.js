@@ -26,10 +26,13 @@ import report from 'vfile-reporter';
 
 //import {toMdast, defaultHandlers, all, one} from 'hast-util-to-mdast'
 
-import {select, selectAll} from 'hast-util-select'
+//import {select, selectAll} from 'hast-util-select'
+import {select, selectAll} from '../packages/xast-util-select/index.js'
 //import {matches, select, selectAll} from 'hast-util-select'
 
 import markdownStringify from 'remark-stringify' // md -> str
+import markdownExtensionGithub from 'remark-gfm'
+
 import assert from "assert";
 //import { Element } from "v96/@types/hast";
 //import markdownStringify from './remark/packages/remark-stringify/index.js' // md -> str
@@ -61,9 +64,9 @@ function date() {
 /*
 https://github.com/NixOS/nixpkgs/blob/7a79469a24a71c26cb61b53590cb09ad6192654f/doc/functions/library/attrsets.xml
 */
-//const inputPath = 'functions/library/attrsets.xml';
-//const inputPath = 'files/attrsets.xml';
-const inputPath = path.join(testDir, 'files/debug-section-title.xml');
+//const inputPath = 'functions/library/attrsets.xml'; // nixpkgs/doc/
+//const inputPath = path.join(testDir, 'files/debug-section-title.xml');
+const inputPath = path.join(testDir, 'files/attrsets.xml');
 
 const outputPath = inputPath.split('.').slice(0, -1).join('.') + '.md'
 
@@ -108,6 +111,11 @@ unified()
 
   // docbook tree -> markdown tree
   .use(docbookToMarkdown)
+
+  // extensions for markdownStringify ...
+
+  // github-flavored markdown: markdown tables, ...
+  .use(markdownExtensionGithub)
 
   // markdown tree -> markdown string
   .use(markdownStringify, {
