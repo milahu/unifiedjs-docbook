@@ -1,0 +1,11 @@
+{
+  "name": "unifiedjs-docbook",
+  "private": true,
+  "overrides": {
+    "mdast-util-to-markdown": "file:./packages/mdast-util-to-markdown",
+    "remark-stringify": "file:./packages/remark/packages/remark-stringify",
+    "docbook-parse": "file:./packages/parse",
+    "docbook-to-markdown": "file:./packages/to-markdown",
+    "docbook-to-markdown-util": "file:./packages/to-markdown-util"
+  }
+}
