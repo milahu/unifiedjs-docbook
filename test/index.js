@@ -30,7 +30,9 @@ import report from 'vfile-reporter';
 import {select, selectAll} from '../packages/xast-util-select/index.js'
 //import {matches, select, selectAll} from 'hast-util-select'
 
-import markdownStringify from 'remark-stringify' // md -> str
+//import markdownStringify from 'remark-stringify' // md -> str
+import markdownStringify from '../packages/remark/packages/remark-stringify/index.js' // md -> str
+
 import markdownExtensionGithub from 'remark-gfm'
 
 import assert from "assert";
