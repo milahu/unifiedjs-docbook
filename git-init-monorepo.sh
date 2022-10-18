@@ -25,3 +25,6 @@ git merge rehype/main  --allow-unrelated-histories -m "merge https://github.com/
 mkdir rehype 
 git mv changelog.md  .editorconfig  .gitattributes  .gitignore  logo.svg  package.json  .prettierignore  script tsconfig.json .github         license     .npmrc    packages      readme.md        test doc rehype/
 git commit -m "move / to rehype/" 
+
+git mv rehype/packages/rehype-parse/ parse/
+git commit -m "mv rehype/packages/rehype-parse/ parse/"
