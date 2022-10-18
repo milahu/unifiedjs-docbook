@@ -28,10 +28,9 @@
     "index.js"
   ],
   "dependencies": {
-    "@types/hast": "^2.0.0",
-    "hast-util-from-parse5": "^7.0.0",
-    "parse5": "^6.0.0",
-    "unified": "^10.0.0"
+    "@types/xast": "^1.0.2",
+    "unified": "^10.0.0",
+    "xast-util-from-xml": "^2.0.1"
   },
   "scripts": {
     "build": "rimraf \"lib/**/*.d.ts\" && tsc && type-coverage"
