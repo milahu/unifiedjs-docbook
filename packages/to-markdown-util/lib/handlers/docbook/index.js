@@ -403,7 +403,7 @@ docbookHandlers['example'] = (h, node) => {
   ).children[0].value.trim()
   
   const result = [
-    h(node, 'heading', {depth: 4}, [
+    h(node, 'heading', {depth: 4, id}, [
       ...all(h, title),
     ]),
   ]
