@@ -1,0 +1,75 @@
+{
+  "name": "rehype",
+  "private": true,
+  "license": "MIT",
+  "homepage": "https://github.com/rehypejs/rehype",
+  "repository": "rehypejs/rehype",
+  "bugs": "https://github.com/rehypejs/rehype/issues",
+  "funding": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/unified"
+  },
+  "type": "module",
+  "workspaces": [
+    "packages/rehype-parse",
+    "packages/rehype-stringify",
+    "packages/rehype",
+    "packages/rehype-cli"
+  ],
+  "devDependencies": {
+    "@types/tape": "^4.0.0",
+    "bail": "^2.0.0",
+    "c8": "^7.0.0",
+    "hast-util-assert": "^3.0.0",
+    "mdast-zone": "^5.0.0",
+    "prettier": "^2.0.0",
+    "remark-cli": "^10.0.0",
+    "remark-preset-wooorm": "^9.0.0",
+    "rimraf": "^3.0.0",
+    "tape": "^5.0.0",
+    "to-vfile": "^7.0.0",
+    "type-coverage": "^2.0.0",
+    "type-fest": "^2.0.0",
+    "typescript": "^4.0.0",
+    "unified": "^10.0.0",
+    "unist-builder": "^3.0.0",
+    "unist-util-remove-position": "^4.0.0",
+    "xo": "^0.48.0"
+  },
+  "scripts": {
+    "build": "npm run build --workspaces && rimraf \"*.d.ts\" \"{test,script}/**/*.d.ts\" && tsc && type-coverage",
+    "format": "remark . -qfo && prettier . -w --loglevel warn && xo --fix",
+    "test-api": "node --conditions development test/index.js",
+    "test-coverage": "c8 --check-coverage --100 --reporter lcov npm run test-api",
+    "test": "npm run build && npm run format && npm run test-coverage"
+  },
+  "prettier": {
+    "tabWidth": 2,
+    "useTabs": false,
+    "singleQuote": true,
+    "bracketSpacing": false,
+    "semi": false,
+    "trailingComma": "none"
+  },
+  "xo": {
+    "prettier": true,
+    "ignores": [
+      "**/*.ts"
+    ],
+    "rules": {
+      "unicorn/prefer-code-point": "off"
+    }
+  },
+  "remarkConfig": {
+    "plugins": [
+      "preset-wooorm",
+      "./script/parse-error.js"
+    ]
+  },
+  "typeCoverage": {
+    "atLeast": 100,
+    "detail": true,
+    "strict": true,
+    "ignoreCatch": true
+  }
+}
