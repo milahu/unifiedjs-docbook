@@ -151,7 +151,7 @@ lib.attrsets.getAttrFromPath [ "a" "b" ] { a = { b = 3; }; }
 lib.attrsets.getAttrFromPath [ "x" "y" ] { }
 ```
 
-```
+```nix
 error: cannot find attribute `x.y'
 ```
 
@@ -191,6 +191,9 @@ lib.attrsets.attrVals [ "a" "b" "c" ] { a = 1; b = 2; c = 3; }
 
 ```nix
 lib.attrsets.attrVals [ "d" ] { }
+```
+
+```
 error: attribute 'd' missing
 ```
 
