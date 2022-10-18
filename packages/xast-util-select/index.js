@@ -1,6 +1,6 @@
 /**
  * @typedef {import('./lib/types.js').Element} Element
- * @typedef {import('./lib/types.js').HastNode} HastNode
+ * @typedef {import('./lib/types.js').XastNode} XastNode
  * @typedef {import('./lib/types.js').Space} Space
  */
 
@@ -9,7 +9,7 @@ import {parse} from './lib/parse.js'
 
 /**
  * @param {string} selector
- * @param {HastNode} [node]
+ * @param {XastNode} [node]
  * @param {Space} [space]
  * @returns {boolean}
  */
@@ -21,7 +21,7 @@ export function matches(selector, node, space) {
 
 /**
  * @param {string} selector
- * @param {HastNode} [node]
+ * @param {XastNode} [node]
  * @param {Space} [space]
  * @returns {Element|null}
  */
@@ -31,7 +31,7 @@ export function select(selector, node, space) {
 
 /**
  * @param {string} selector
- * @param {HastNode} [node]
+ * @param {XastNode} [node]
  * @param {Space} [space]
  * @returns {Array<Element>}
  */
