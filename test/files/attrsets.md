@@ -1,6 +1,6 @@
-# Attribute-Set Functions
+# [Attribute-Set Functions](#sec-functions-library-attrset)<a id="sec-functions-library-attrset"></a>
 
-## `lib.attrset.attrByPath`
+## [`lib.attrset.attrByPath`](#function-library-lib.attrsets.attrByPath)<a id="function-library-lib.attrsets.attrByPath"></a>
 
 ```hs nix
 attrByPath :: [String] -> Any -> AttrSet -> Any 
@@ -26,7 +26,7 @@ The nested attributeset to select values from.
 
 ### Examples
 
-#### Extracting a value from a nested attribute set
+#### [Extracting a value from a nested attribute set](#function-library-lib.attrset.attrByPath-example-value-exists)<a id="function-library-lib.attrset.attrByPath-example-value-exists"></a>
 
 ```nix
 let set = { a = { b = 3; }; };
@@ -37,7 +37,7 @@ in lib.attrsets.attrByPath [ "a" "b" ] 0 set
 3
 ```
 
-#### No value at the path, instead using the default
+#### [No value at the path, instead using the default](#function-library-lib.attrset.attrByPath-example-default-value)<a id="function-library-lib.attrset.attrByPath-example-default-value"></a>
 
 ```nix
 lib.attrsets.attrByPath [ "a" "b" ] 0 {}
@@ -47,7 +47,7 @@ lib.attrsets.attrByPath [ "a" "b" ] 0 {}
 0
 ```
 
-## `lib.attrsets.hasAttrByPath`
+## [`lib.attrsets.hasAttrByPath`](#function-library-lib.attrsets.hasAttrByPath)<a id="function-library-lib.attrsets.hasAttrByPath"></a>
 
 ```hs nix
 hasAttrByPath :: [String] -> AttrSet -> Bool 
@@ -69,7 +69,7 @@ The nested attributeset to check.
 
 ### Examples
 
-#### A nested value does exist inside a set
+#### [A nested value does exist inside a set](#function-library-lib.attrsets.hasAttrByPath-example)<a id="function-library-lib.attrsets.hasAttrByPath-example"></a>
 
 ```nix
 lib.attrsets.hasAttrByPath
@@ -81,7 +81,7 @@ lib.attrsets.hasAttrByPath
 true
 ```
 
-## `lib.attrsets.setAttrByPath`
+## [`lib.attrsets.setAttrByPath`](#function-library-lib.attrsets.setAttrByPath)<a id="function-library-lib.attrsets.setAttrByPath"></a>
 
 ```hs nix
 setAttrByPath :: [String] -> Any -> AttrSet 
@@ -103,7 +103,7 @@ The value to set at the location described by `attrPath`.
 
 ### Examples
 
-#### Creating a new nested attribute set
+#### [Creating a new nested attribute set](#function-library-lib.attrsets.setAttrByPath-example)<a id="function-library-lib.attrsets.setAttrByPath-example"></a>
 
 ```nix
 lib.attrsets.setAttrByPath [ "a" "b" ] 3
@@ -113,7 +113,7 @@ lib.attrsets.setAttrByPath [ "a" "b" ] 3
 { a = { b = 3; }; }
 ```
 
-## `lib.attrsets.getAttrFromPath`
+## [`lib.attrsets.getAttrFromPath`](#function-library-lib.attrsets.getAttrFromPath)<a id="function-library-lib.attrsets.getAttrFromPath"></a>
 
 ```hs nix
 getAttrFromPath :: [String] -> AttrSet -> Value 
@@ -135,7 +135,7 @@ The nested attribute set to find the value in.
 
 ### Examples
 
-#### Succesfully getting a value from an attribute set
+#### [Succesfully getting a value from an attribute set](#function-library-lib.attrsets.getAttrPath-example-success)<a id="function-library-lib.attrsets.getAttrPath-example-success"></a>
 
 ```nix
 lib.attrsets.getAttrFromPath [ "a" "b" ] { a = { b = 3; }; }
@@ -145,7 +145,7 @@ lib.attrsets.getAttrFromPath [ "a" "b" ] { a = { b = 3; }; }
 3
 ```
 
-#### Throwing after failing to get a value from an attribute set
+#### [Throwing after failing to get a value from an attribute set](#function-library-lib.attrsets.getAttrPath-example-throw)<a id="function-library-lib.attrsets.getAttrPath-example-throw"></a>
 
 ```nix
 lib.attrsets.getAttrFromPath [ "x" "y" ] { }
@@ -155,7 +155,7 @@ lib.attrsets.getAttrFromPath [ "x" "y" ] { }
 error: cannot find attribute `x.y'
 ```
 
-## `lib.attrsets.attrVals`
+## [`lib.attrsets.attrVals`](#function-library-lib.attrsets.attrVals)<a id="function-library-lib.attrsets.attrVals"></a>
 
 ```hs nix
 attrVals :: [String] -> AttrSet -> [Any] 
@@ -177,7 +177,7 @@ The set to get attribute values from.
 
 ### Examples
 
-#### Getting several values from an attribute set
+#### [Getting several values from an attribute set](#function-library-lib.attrsets.attrVals-example-success)<a id="function-library-lib.attrsets.attrVals-example-success"></a>
 
 ```nix
 lib.attrsets.attrVals [ "a" "b" "c" ] { a = 1; b = 2; c = 3; }
@@ -187,14 +187,14 @@ lib.attrsets.attrVals [ "a" "b" "c" ] { a = 1; b = 2; c = 3; }
 [ 1 2 3 ]
 ```
 
-#### Getting missing values from an attribute set
+#### [Getting missing values from an attribute set](#function-library-lib.attrsets.attrVals-failure)<a id="function-library-lib.attrsets.attrVals-failure"></a>
 
 ```nix
 lib.attrsets.attrVals [ "d" ] { }
 error: attribute 'd' missing
 ```
 
-## `lib.attrsets.attrValues`
+## [`lib.attrsets.attrValues`](#function-library-lib.attrsets.attrValues)<a id="function-library-lib.attrsets.attrValues"></a>
 
 ```hs nix
 attrValues :: AttrSet -> [Any] 
@@ -214,7 +214,7 @@ The attribute set.
 
 ### Examples
 
-####
+#### [](#function-library-lib.attrsets.attrValues-example)<a id="function-library-lib.attrsets.attrValues-example"></a>
 
 ```nix
 lib.attrsets.attrValues { a = 1; b = 2; c = 3; }
@@ -224,7 +224,7 @@ lib.attrsets.attrValues { a = 1; b = 2; c = 3; }
 [ 1 2 3 ]
 ```
 
-## `lib.attrsets.catAttrs`
+## [`lib.attrsets.catAttrs`](#function-library-lib.attrsets.catAttrs)<a id="function-library-lib.attrsets.catAttrs"></a>
 
 ```hs nix
 catAttrs :: String -> [AttrSet] -> [Any] 
@@ -248,7 +248,7 @@ The list of attribute sets to select `attr` from.
 
 ### Examples
 
-#### Collect an attribute from a list of attribute sets.
+#### [Collect an attribute from a list of attribute sets.](#function-library-lib.attrsets.catAttrs-example)<a id="function-library-lib.attrsets.catAttrs-example"></a>
 
 ```nix
 catAttrs "a" [{a = 1;} {b = 0;} {a = 2;}]
@@ -258,7 +258,7 @@ catAttrs "a" [{a = 1;} {b = 0;} {a = 2;}]
 [ 1 2 ]
 ```
 
-## `lib.attrsets.filterAttrs`
+## [`lib.attrsets.filterAttrs`](#function-library-lib.attrsets.filterAttrs)<a id="function-library-lib.attrsets.filterAttrs"></a>
 
 ```hs nix
 filterAttrs :: (String -> Any -> Bool) -> AttrSet -> AttrSet 
@@ -286,7 +286,7 @@ The attribute set to filter
 
 ### Examples
 
-#### Filtering an attributeset
+#### [Filtering an attributeset](#function-library-lib.attrsets.filterAttrs-example)<a id="function-library-lib.attrsets.filterAttrs-example"></a>
 
 ```nix
 filterAttrs (n: v: n == "foo") { foo = 1; bar = 2; }
@@ -296,7 +296,7 @@ filterAttrs (n: v: n == "foo") { foo = 1; bar = 2; }
 { foo = 1; }
 ```
 
-## `lib.attrsets.filterAttrsRecursive`
+## [`lib.attrsets.filterAttrsRecursive`](#function-library-lib.attrsets.filterAttrsRecursive)<a id="function-library-lib.attrsets.filterAttrsRecursive"></a>
 
 ```hs nix
 filterAttrsRecursive :: (String -> Any -> Bool) -> AttrSet -> AttrSet 
@@ -324,7 +324,7 @@ The attribute set to filter
 
 ### Examples
 
-#### Recursively filtering an attribute set
+#### [Recursively filtering an attribute set](#function-library-lib.attrsets.filterAttrsRecursive-example)<a id="function-library-lib.attrsets.filterAttrsRecursive-example"></a>
 
 ```nix
 lib.attrsets.filterAttrsRecursive
@@ -356,7 +356,7 @@ lib.attrsets.filterAttrsRecursive
    }
 ```
 
-## `lib.attrsets.foldAttrs`
+## [`lib.attrsets.foldAttrs`](#function-library-lib.attrsets.foldAttrs)<a id="function-library-lib.attrsets.foldAttrs"></a>
 
 ```hs nix
 foldAttrs :: (Any -> Any -> Any) -> Any -> [AttrSets] -> Any 
@@ -386,7 +386,7 @@ A list of attribute sets to fold together by key.
 
 ### Examples
 
-#### Combining an attribute of lists in to one attribute set
+#### [Combining an attribute of lists in to one attribute set](#function-library-lib.attrsets.foldAttrs-example)<a id="function-library-lib.attrsets.foldAttrs-example"></a>
 
 ```nix
 lib.attrsets.foldAttrs
@@ -402,7 +402,7 @@ lib.attrsets.foldAttrs
 { a = [ 2 3 ]; b = [ 7 6 ]; }
 ```
 
-## `lib.attrsets.collect`
+## [`lib.attrsets.collect`](#function-library-lib.attrsets.collect)<a id="function-library-lib.attrsets.collect"></a>
 
 ```hs nix
 collect :: (Any -> Bool) -> AttrSet -> [Any] 
@@ -428,7 +428,7 @@ The attribute set to recursively collect.
 
 ### Examples
 
-#### Collecting all lists from an attribute set
+#### [Collecting all lists from an attribute set](#function-library-lib.attrsets.collect-example-lists)<a id="function-library-lib.attrsets.collect-example-lists"></a>
 
 ```nix
 lib.attrsets.collect isList { a = { b = ["b"]; }; c = [1]; }
@@ -438,7 +438,7 @@ lib.attrsets.collect isList { a = { b = ["b"]; }; c = [1]; }
 [["b"] [1]]
 ```
 
-#### Collecting all attribute-sets which contain the outPath attribute name.
+#### [Collecting all attribute-sets which contain the outPath attribute name.](#function-library-lib.attrsets.collect-example-outpath)<a id="function-library-lib.attrsets.collect-example-outpath"></a>
 
 ```nix
 collect (x: x ? outPath)
@@ -449,7 +449,7 @@ collect (x: x ? outPath)
 [{ outPath = "a/"; } { outPath = "b/"; }]
 ```
 
-## `lib.attrsets.nameValuePair`
+## [`lib.attrsets.nameValuePair`](#function-library-lib.attrsets.nameValuePair)<a id="function-library-lib.attrsets.nameValuePair"></a>
 
 ```hs nix
 nameValuePair :: String -> Any -> AttrSet 
@@ -471,7 +471,7 @@ The attribute value.
 
 ### Examples
 
-#### Creating a name value pair
+#### [Creating a name value pair](#function-library-lib.attrsets.nameValuePair-example)<a id="function-library-lib.attrsets.nameValuePair-example"></a>
 
 ```nix
 nameValuePair "some" 6
@@ -481,7 +481,7 @@ nameValuePair "some" 6
 { name = "some"; value = 6; }
 ```
 
-## `lib.attrsets.mapAttrs`
+## [`lib.attrsets.mapAttrs`](#function-library-lib.attrsets.mapAttrs)<a id="function-library-lib.attrsets.mapAttrs"></a>
 
 ```hs nix
 ```
@@ -504,7 +504,7 @@ Given an attribute's name and value, return a new value.
 
 ### Examples
 
-#### Modifying each value of an attribute set
+#### [Modifying each value of an attribute set](#function-library-lib.attrsets.mapAttrs-example)<a id="function-library-lib.attrsets.mapAttrs-example"></a>
 
 ```nix
 lib.attrsets.mapAttrs
@@ -516,7 +516,7 @@ lib.attrsets.mapAttrs
 { x = "x-foo"; y = "y-bar"; }
 ```
 
-## `lib.attrsets.mapAttrs'`
+## [`lib.attrsets.mapAttrs'`](#function-library-lib.attrsets.mapAttrs-prime)<a id="function-library-lib.attrsets.mapAttrs-prime"></a>
 
 ```hs nix
 mapAttrs' :: (String -> Any -> { name = String; value = Any }) -> AttrSet -> AttrSet 
@@ -542,7 +542,7 @@ The attribute set to map over.
 
 ### Examples
 
-#### Change the name and value of each attribute of an attribute set
+#### [Change the name and value of each attribute of an attribute set](#function-library-lib.attrsets.mapAttrs-prime-example)<a id="function-library-lib.attrsets.mapAttrs-prime-example"></a>
 
 ```nix
 lib.attrsets.mapAttrs' (name: value: lib.attrsets.nameValuePair ("foo_" + name) ("bar-" + value))
@@ -553,7 +553,7 @@ lib.attrsets.mapAttrs' (name: value: lib.attrsets.nameValuePair ("foo_" + name) 
 { foo_x = "bar-a"; foo_y = "bar-b"; }
 ```
 
-## `lib.attrsets.mapAttrsToList`
+## [`lib.attrsets.mapAttrsToList`](#function-library-lib.attrsets.mapAttrsToList)<a id="function-library-lib.attrsets.mapAttrsToList"></a>
 
 ```hs nix
 mapAttrsToList :: (String -> Any -> Any) -> AttrSet -> [Any] 
@@ -579,7 +579,7 @@ The attribute set to map over.
 
 ### Examples
 
-#### Combine attribute values and names in to a list
+#### [Combine attribute values and names in to a list](#function-library-lib.attrsets.mapAttrsToList-example)<a id="function-library-lib.attrsets.mapAttrsToList-example"></a>
 
 ```nix
 lib.attrsets.mapAttrsToList (name: value: "${name}=${value}")
@@ -590,7 +590,7 @@ lib.attrsets.mapAttrsToList (name: value: "${name}=${value}")
 [ "x=a" "y=b" ]
 ```
 
-## `lib.attrsets.mapAttrsRecursive`
+## [`lib.attrsets.mapAttrsRecursive`](#function-library-lib.attrsets.mapAttrsRecursive)<a id="function-library-lib.attrsets.mapAttrsRecursive"></a>
 
 ```hs nix
 mapAttrsRecursive :: ([String] > Any -> Any) -> AttrSet -> AttrSet 
@@ -616,7 +616,7 @@ The attribute set to recursively map over.
 
 ### Examples
 
-#### A contrived example of using `lib.attrsets.mapAttrsRecursive`
+#### [A contrived example of using `lib.attrsets.mapAttrsRecursive`](#function-library-lib.attrsets.mapAttrsRecursive-example)<a id="function-library-lib.attrsets.mapAttrsRecursive-example"></a>
 
 ```nix
 mapAttrsRecursive
@@ -646,7 +646,7 @@ mapAttrsRecursive
    }
 ```
 
-## `lib.attrsets.mapAttrsRecursiveCond`
+## [`lib.attrsets.mapAttrsRecursiveCond`](#function-library-lib.attrsets.mapAttrsRecursiveCond)<a id="function-library-lib.attrsets.mapAttrsRecursiveCond"></a>
 
 ```hs nix
 mapAttrsRecursiveCond :: (AttrSet -> Bool) -> ([ String ] -> Any -> Any) -> AttrSet -> AttrSet 
@@ -680,7 +680,7 @@ The attribute set to recursively map over.
 
 ### Examples
 
-#### Only convert attribute values to JSON if the containing attribute set is marked for recursion
+#### [Only convert attribute values to JSON if the containing attribute set is marked for recursion](#function-library-lib.attrsets.mapAttrsRecursiveCond-example)<a id="function-library-lib.attrsets.mapAttrsRecursiveCond-example"></a>
 
 ```nix
 lib.attrsets.mapAttrsRecursiveCond
@@ -707,7 +707,7 @@ lib.attrsets.mapAttrsRecursiveCond
    }
 ```
 
-## `lib.attrsets.genAttrs`
+## [`lib.attrsets.genAttrs`](#function-library-lib.attrsets.genAttrs)<a id="function-library-lib.attrsets.genAttrs"></a>
 
 ```hs nix
 genAttrs :: [ String ] -> (String -> Any) -> AttrSet 
@@ -733,7 +733,7 @@ Takes the name of the attribute and return the attribute's value.
 
 ### Examples
 
-#### Generate an attrset based on names only
+#### [Generate an attrset based on names only](#function-library-lib.attrsets.genAttrs-example)<a id="function-library-lib.attrsets.genAttrs-example"></a>
 
 ```nix
 lib.attrsets.genAttrs [ "foo" "bar" ] (name: "x_${name}")
@@ -743,7 +743,7 @@ lib.attrsets.genAttrs [ "foo" "bar" ] (name: "x_${name}")
 { foo = "x_foo"; bar = "x_bar"; }
 ```
 
-## `lib.attrsets.isDerivation`
+## [`lib.attrsets.isDerivation`](#function-library-lib.attrsets.isDerivation)<a id="function-library-lib.attrsets.isDerivation"></a>
 
 ```hs nix
 isDerivation :: Any -> Bool 
@@ -761,7 +761,7 @@ The value which is possibly a derivation.
 
 ### Examples
 
-#### A package is a derivation
+#### [A package is a derivation](#function-library-lib.attrsets.isDerivation-example-true)<a id="function-library-lib.attrsets.isDerivation-example-true"></a>
 
 ```nix
 lib.attrsets.isDerivation (import <nixpkgs> {}).ruby
@@ -771,7 +771,7 @@ lib.attrsets.isDerivation (import <nixpkgs> {}).ruby
 true
 ```
 
-#### Anything else is not a derivation
+#### [Anything else is not a derivation](#function-library-lib.attrsets.isDerivation-example-false)<a id="function-library-lib.attrsets.isDerivation-example-false"></a>
 
 ```nix
 lib.attrsets.isDerivation "foobar"
@@ -781,7 +781,7 @@ lib.attrsets.isDerivation "foobar"
 false
 ```
 
-## `lib.attrsets.toDerivation`
+## [`lib.attrsets.toDerivation`](#function-library-lib.attrsets.toDerivation)<a id="function-library-lib.attrsets.toDerivation"></a>
 
 ```hs nix
 toDerivation :: Path -> Derivation 
@@ -797,7 +797,7 @@ Converts a store path to a fake derivation.
 
 A store path to convert to a derivation.
 
-## `lib.attrsets.optionalAttrs`
+## [`lib.attrsets.optionalAttrs`](#function-library-lib.attrsets.optionalAttrs)<a id="function-library-lib.attrsets.optionalAttrs"></a>
 
 ```hs nix
 optionalAttrs :: Bool -> AttrSet 
@@ -819,7 +819,7 @@ The attribute set to return if `cond` is true.
 
 ### Examples
 
-#### Return the provided attribute set when `cond` is true
+#### [Return the provided attribute set when `cond` is true](#function-library-lib.attrsets.optionalAttrs-example-true)<a id="function-library-lib.attrsets.optionalAttrs-example-true"></a>
 
 ```nix
 lib.attrsets.optionalAttrs true { my = "set"; }
@@ -829,7 +829,7 @@ lib.attrsets.optionalAttrs true { my = "set"; }
 { my = "set"; }
 ```
 
-#### Return an empty attribute set when `cond` is false
+#### [Return an empty attribute set when `cond` is false](#function-library-lib.attrsets.optionalAttrs-example-false)<a id="function-library-lib.attrsets.optionalAttrs-example-false"></a>
 
 ```nix
 lib.attrsets.optionalAttrs false { my = "set"; }
@@ -839,7 +839,7 @@ lib.attrsets.optionalAttrs false { my = "set"; }
 { }
 ```
 
-## `lib.attrsets.zipAttrsWithNames`
+## [`lib.attrsets.zipAttrsWithNames`](#function-library-lib.attrsets.zipAttrsWithNames)<a id="function-library-lib.attrsets.zipAttrsWithNames"></a>
 
 ```hs nix
 zipAttrsWithNames :: [ String ] -> (String -> [ Any ] -> Any) -> [ AttrSet ] -> AttrSet 
@@ -869,7 +869,7 @@ A list of attribute sets to zip together.
 
 ### Examples
 
-#### Summing a list of attribute sets of numbers
+#### [Summing a list of attribute sets of numbers](#function-library-lib.attrsets.zipAttrsWithNames-example)<a id="function-library-lib.attrsets.zipAttrsWithNames-example"></a>
 
 ```nix
 lib.attrsets.zipAttrsWithNames
@@ -887,7 +887,7 @@ lib.attrsets.zipAttrsWithNames
 { a = "a 11"; b = "b 101"; }
 ```
 
-## `lib.attrsets.zipAttrsWith`
+## [`lib.attrsets.zipAttrsWith`](#function-library-lib.attrsets.zipAttrsWith)<a id="function-library-lib.attrsets.zipAttrsWith"></a>
 
 ```hs nix
 zipAttrsWith :: (String -> [ Any ] -> Any) -> [ AttrSet ] -> AttrSet 
@@ -913,7 +913,7 @@ A list of attribute sets to zip together.
 
 ### Examples
 
-#### Summing a list of attribute sets of numbers
+#### [Summing a list of attribute sets of numbers](#function-library-lib.attrsets.zipAttrsWith-example)<a id="function-library-lib.attrsets.zipAttrsWith-example"></a>
 
 ```nix
 lib.attrsets.zipAttrsWith
@@ -930,7 +930,7 @@ lib.attrsets.zipAttrsWith
 { a = "a 11"; b = "b 101"; c = "c 1001"; }
 ```
 
-## `lib.attrsets.zipAttrs`
+## [`lib.attrsets.zipAttrs`](#function-library-lib.attrsets.zipAttrs)<a id="function-library-lib.attrsets.zipAttrs"></a>
 
 ```hs nix
 zipAttrs :: [ AttrSet ] -> AttrSet 
@@ -948,7 +948,7 @@ A list of attribute sets to zip together.
 
 ### Examples
 
-#### Combining a list of attribute sets
+#### [Combining a list of attribute sets](#function-library-lib.attrsets.zipAttrs-example)<a id="function-library-lib.attrsets.zipAttrs-example"></a>
 
 ```nix
 lib.attrsets.zipAttrs
@@ -964,7 +964,7 @@ lib.attrsets.zipAttrs
 { a = [ 1 10 ]; b = [ 1 100 ]; c = [ 1 1000 ]; }
 ```
 
-## `lib.attrsets.recursiveUpdateUntil`
+## [`lib.attrsets.recursiveUpdateUntil`](#function-library-lib.attrsets.recursiveUpdateUntil)<a id="function-library-lib.attrsets.recursiveUpdateUntil"></a>
 
 ```hs nix
 recursiveUpdateUntil :: ( [ String ] -> AttrSet -> AttrSet -> Bool ) -> AttrSet -> AttrSet -> AttrSet 
@@ -992,7 +992,7 @@ The right hand attribute set of the merge.
 
 ### Examples
 
-#### Recursively merging two attribute sets
+#### [Recursively merging two attribute sets](#function-library-lib.attrsets.recursiveUpdateUntil-example)<a id="function-library-lib.attrsets.recursiveUpdateUntil-example"></a>
 
 ```nix
 lib.attrsets.recursiveUpdateUntil (path: l: r: path == ["foo"])
@@ -1019,7 +1019,7 @@ lib.attrsets.recursiveUpdateUntil (path: l: r: path == ["foo"])
 }
 ```
 
-## `lib.attrsets.recursiveUpdate`
+## [`lib.attrsets.recursiveUpdate`](#function-library-lib.attrsets.recursiveUpdate)<a id="function-library-lib.attrsets.recursiveUpdate"></a>
 
 ```hs nix
 recursiveUpdate :: AttrSet -> AttrSet -> AttrSet 
@@ -1041,7 +1041,7 @@ The right hand attribute set of the merge.
 
 ### Examples
 
-#### Recursively merging two attribute sets
+#### [Recursively merging two attribute sets](#function-library-lib.attrsets.recursiveUpdate-example)<a id="function-library-lib.attrsets.recursiveUpdate-example"></a>
 
 ```nix
 recursiveUpdate
@@ -1061,7 +1061,7 @@ recursiveUpdate
 }
 ```
 
-## `lib.attrsets.recurseIntoAttrs`
+## [`lib.attrsets.recurseIntoAttrs`](#function-library-lib.attrsets.recurseIntoAttrs)<a id="function-library-lib.attrsets.recurseIntoAttrs"></a>
 
 ```hs nix
 recurseIntoAttrs :: AttrSet -> AttrSet 
@@ -1081,7 +1081,7 @@ An attribute set to scan for derivations.
 
 ### Examples
 
-#### Making Nix look inside an attribute set
+#### [Making Nix look inside an attribute set](#function-library-lib.attrsets.recurseIntoAttrs-example)<a id="function-library-lib.attrsets.recurseIntoAttrs-example"></a>
 
 ```nix
 { pkgs ? import <nixpkgs> {} }:
@@ -1092,7 +1092,7 @@ An attribute set to scan for derivations.
 }
 ```
 
-## `lib.attrsets.cartesianProductOfSets`
+## [`lib.attrsets.cartesianProductOfSets`](#function-library-lib.attrsets.cartesianProductOfSets)<a id="function-library-lib.attrsets.cartesianProductOfSets"></a>
 
 ```hs nix
 cartesianProductOfSets :: AttrSet -> [ AttrSet ] 
@@ -1110,7 +1110,7 @@ An attribute set with attributes that carry lists of values.
 
 ### Examples
 
-#### Creating the cartesian product of a list of attribute values
+#### [Creating the cartesian product of a list of attribute values](#function-library-lib.attrsets.cartesianProductOfSets-example)<a id="function-library-lib.attrsets.cartesianProductOfSets-example"></a>
 
 ```nix
 cartesianProductOfSets { a = [ 1 2 ]; b = [ 10 20 ]; }
