@@ -1,5 +1,5 @@
 {
-  "name": "rehype-parse",
+  "name": "unifiedjs-docbook-parse",
   "version": "8.0.4",
   "description": "rehype plugin to parse HTML",
   "license": "MIT",
@@ -16,7 +16,7 @@
     "parse"
   ],
   "homepage": "https://github.com/rehypejs/rehype",
-  "repository": "https://github.com/rehypejs/rehype/tree/main/packages/rehype-parse",
+  "repository": "https://github.com/rehypejs/rehype/tree/main/packages/unifiedjs-docbook-parse",
   "bugs": "https://github.com/rehypejs/rehype/issues",
   "funding": {
     "type": "opencollective",
