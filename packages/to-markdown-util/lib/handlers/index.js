@@ -33,11 +33,7 @@ import {textarea} from './textarea.js'
 import {wbr} from './wbr.js'
 
 // docbook
-import {section} from './docbook/section.js'
-
-const docbookHandlers = {
-  section,
-}
+import docbookHandlers from './docbook/index.js'
 
 export const handlers = {
   root,
