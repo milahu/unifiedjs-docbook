@@ -1,0 +1,9 @@
+<section xmlns="http://docbook.org/ns/docbook"
+         xmlns:xlink="http://www.w3.org/1999/xlink"
+         xmlns:xi="http://www.w3.org/2001/XInclude"
+         xml:id="sec-functions-library-attrset">
+ <section xml:id="function-library-lib.attrsets.attrByPath">
+  <!-- FIXME "function" node is parsed as text -->
+  <title><function>lib.attrset.attrByPath</function></title>
+ </section>
+</section>
