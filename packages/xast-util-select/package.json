@@ -1,5 +1,5 @@
 {
-  "name": "hast-util-select",
+  "name": "xast-util-select",
   "version": "5.0.2",
   "description": "hast utility for `querySelector`, `querySelectorAll`, and `matches`",
   "license": "MIT",
