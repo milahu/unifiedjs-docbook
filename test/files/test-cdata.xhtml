@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+
+<!--
+https://www.w3.org/QA/2002/04/valid-dtd-list.html
+
+trying to embed docbook xml into xhtml ... still invalid
+https://validator.w3.org/check
+
+but: parsing CDATA
+parse5 fails
+htmlparser2 succeeds
+-->
+
+<!DOCTYPE html PUBLIC
+    "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN"
+    "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg.dtd">
+
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:docbook="http://docbook.org/ns/docbook"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  xmlns:xi="http://www.w3.org/2001/XInclude"
+  xml:id="sec-functions-library-attrset"
+  lang="en"
+  xml:lang="en"
+>
+
+<head>
+ <title>test</title>
+</head>
+
+<body>
+
+<example xml:id="function-library-lib.attrset.attrByPath-example-value-exists">
+<title>Extracting a value from a nested attribute set</title>
+<programlisting><![CDATA[
+let set = { a = { b = 3; }; };
+in lib.attrsets.attrByPath [ "a" "b" ] 0 set
+=> 3
+]]></programlisting>
+</example>
+
+</body>
+
+</html>
