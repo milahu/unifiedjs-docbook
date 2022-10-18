@@ -15,14 +15,6 @@
     "ast",
     "parse"
   ],
-  "homepage": "https://github.com/rehypejs/rehype",
-  "repository": "https://github.com/rehypejs/rehype/tree/main/packages/unifiedjs-docbook-parse",
-  "bugs": "https://github.com/rehypejs/rehype/issues",
-  "funding": {
-    "type": "opencollective",
-    "url": "https://opencollective.com/unified"
-  },
-  "author": "Titus Wormer <tituswormer@gmail.com> (https://wooorm.com)",
   "contributors": [
     "Titus Wormer <tituswormer@gmail.com> (https://wooorm.com)"
   ],
