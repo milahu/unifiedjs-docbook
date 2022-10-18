@@ -1,3 +1,6 @@
 [submodule "packages/mdast-util-to-markdown"]
 	path = packages/mdast-util-to-markdown
 	url = https://github.com/syntax-tree/mdast-util-to-markdown
+[submodule "packages/remark"]
+	path = packages/remark
+	url = https://github.com/remarkjs/remark
