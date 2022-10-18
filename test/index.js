@@ -8,7 +8,7 @@ import path from 'path';
 import process from 'process';
 
 const testScript = process.argv[1]
-const testDir = path.dirname(testScript)
+const testDir = path.relative(process.cwd(), path.dirname(testScript))
 
 import {unified} from 'unified'
 
@@ -63,7 +63,7 @@ https://github.com/NixOS/nixpkgs/blob/7a79469a24a71c26cb61b53590cb09ad6192654f/d
 */
 //const inputPath = 'functions/library/attrsets.xml';
 //const inputPath = 'files/attrsets.xml';
-const inputPath = path.resolve(testDir, 'files/debug-section-title.xml');
+const inputPath = path.join(testDir, 'files/debug-section-title.xml');
 
 const outputPath = inputPath.split('.').slice(0, -1).join('.') + '.md'
 
