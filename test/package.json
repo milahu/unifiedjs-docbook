@@ -15,5 +15,8 @@
     "hast-util-select": "^5.0.2",
     "remark-stringify": "^10.0.0",
     "vfile-reporter": "^7.0.4"
+  },
+  "dependencies": {
+    "remark-gfm": "^3.0.0"
   }
 }
