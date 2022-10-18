@@ -1,5 +1,5 @@
 /**
- * @typedef {import('hast').Element} Element
+ * @typedef {import('xast').Element} Element
  * @typedef {import('./types.js').Selectors} Selectors
  * @typedef {import('./types.js').Rule} Rule
  * @typedef {import('./types.js').RuleSet} RuleSet
