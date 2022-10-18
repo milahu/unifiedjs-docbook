@@ -2,13 +2,13 @@
  * @typedef {import('unist').Node} Node
  * @typedef {import('unist').Parent} Parent
  *
- * @typedef {import('hast').Root} Root
- * @typedef {import('hast').Element} Element
- * @typedef {import('hast').attributes} attributes
- * @typedef {Element|Root} HastParent
- * @typedef {import('hast').Parent['children'][number]|Root} HastNode
+ * @typedef {import('xast').Root} Root
+ * @typedef {import('xast').Element} Element
+ * @typedef {import('xast').Attributes} Attributes
+ * @typedef {Element|Root} XastParent
+ * @typedef {import('xast').Parent['children'][number]|Root} XastNode
  * @typedef {Element['children'][number]} ElementChild
- * @typedef {attributes[string]} PropertyValue
+ * @typedef {Attributes[string]} PropertyValue
  *
  * @typedef {import('css-selector-parser').Selector} Selector
  * @typedef {import('css-selector-parser').Selectors} Selectors
@@ -63,7 +63,7 @@
 /**
  * @callback SelectIterator
  * @param {Rule} query
- * @param {HastNode} node
+ * @param {XastNode} node
  * @param {number} index
  * @param {Parent|null} parent
  * @param {SelectState} state
@@ -71,7 +71,7 @@
 
 /**
  * @typedef {(
- *  ((query: Rule, node: HastNode, index: number|null, parent: Parent|null, state: SelectState) => void)
+ *  ((query: Rule, node: XastNode, index: number|null, parent: Parent|null, state: SelectState) => void)
  * )} Handler
  */
 
