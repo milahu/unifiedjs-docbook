@@ -38,7 +38,7 @@ export function section(h, node) {
   //console.dir({title}); throw new Error('TODO')
   // remove title
   if (node.children) {
-    node.children = node.children.filter((node) => node.tagName != 'title')
+    node.children = node.children.filter((node) => node.name != 'title')
   }
   //const mdHeadId = id ? ` {#${id}}` : ''
   return h(node, 'html', [

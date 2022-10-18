@@ -25,8 +25,8 @@ export function one(h, node, parent) {
       return
     }
 
-    if (own.call(h.handlers, node.tagName)) {
-      fn = h.handlers[node.tagName]
+    if (own.call(h.handlers, node.name)) {
+      fn = h.handlers[node.name]
     }
   } else if (own.call(h.handlers, node.type)) {
     fn = h.handlers[node.type]
