@@ -530,8 +530,8 @@ function invalidPseudo() {
  * @param {RulePseudo} query
  */
 function unknownPseudo(query) {
-  if (query.name) {
-    throw new Error('Unknown pseudo-selector `' + query.name + '`')
+  if (query.tagName) {
+    throw new Error('Unknown pseudo-selector `' + query.tagName + '`')
   }
 
   throw new Error('Unexpected pseudo-element or empty pseudo-class')
@@ -543,7 +543,7 @@ function unknownPseudo(query) {
  */
 function assertDeep(state, query) {
   if (state.shallow) {
-    throw new Error('Cannot use `:' + query.name + '` without parent')
+    throw new Error('Cannot use `:' + query.tagName + '` without parent')
   }
 }
 

@@ -9,5 +9,5 @@
  * @returns {boolean}
  */
 export function name(query, element) {
-  return query.name === '*' || query.name === element.name
+  return query.tagName === '*' || query.tagName === element.name
 }
