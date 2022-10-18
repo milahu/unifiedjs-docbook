@@ -12,11 +12,16 @@ const testDir = path.relative(process.cwd(), path.dirname(testScript))
 
 import {unified} from 'unified'
 
+// FIXME resolutions in package.json
+//import docbookParse from "docbook-parse"
 import docbookParse from "../packages/parse/index.js"
 
+// FIXME resolutions in package.json
+//import docbookToMarkdown from "docbook-to-markdown"
 import docbookToMarkdown from "../packages/to-markdown/index.js"
-import {all} from "../packages/to-markdown-util/index.js"
-import {wrapChildren} from '../packages/to-markdown-util/lib/util/wrap-children.js'
+
+//import {all} from "../packages/to-markdown-util/index.js"
+//import {wrapChildren} from '../packages/to-markdown-util/lib/util/wrap-children.js'
 
 //import { toHtml } from 'hast-util-to-html' // html -> str
 //import {toText} from 'hast-util-to-text'
@@ -27,11 +32,11 @@ import report from 'vfile-reporter';
 //import {toMdast, defaultHandlers, all, one} from 'hast-util-to-mdast'
 
 //import {select, selectAll} from 'hast-util-select'
-import {select, selectAll} from '../packages/xast-util-select/index.js'
+//import {select, selectAll} from '../packages/xast-util-select/index.js'
 //import {matches, select, selectAll} from 'hast-util-select'
 
-//import markdownStringify from 'remark-stringify' // md -> str
-import markdownStringify from '../packages/remark/packages/remark-stringify/index.js' // md -> str
+import markdownStringify from 'remark-stringify' // md -> str
+//import markdownStringify from '../packages/remark/packages/remark-stringify/index.js' // md -> str
 
 import markdownExtensionGithub from 'remark-gfm'
 
