@@ -29,6 +29,12 @@ node test/index.js
 * [test/files/attrsets.md](test/files/attrsets.md)
 * [test/files/attrsets.xml](test/files/attrsets.xml)
 
+## design goals
+
+* the generated markdown should be pretty and functional on the github blob API
+* the converter should be "hackable": just edit some javascript files
+* performance is secondary
+
 ## based on
 
 | | |
@@ -42,3 +48,7 @@ node test/index.js
 
 - [ ] split packages into multiple git repos, use git submodules
 - [ ] implement all transforms needed for `nixpkgs/doc/**/*.xml`
+
+## related
+
+* https://github.com/NixOS/nixpkgs/issues/105243 Docbook to CommonMark Best Practices
