@@ -1,5 +1,8 @@
 #! /bin/sh
 
+set -e
+set -x
+
 mkdir unifiedjs-docbook/
 cd unifiedjs-docbook/
 git init
@@ -28,3 +31,9 @@ git commit -m "move / to rehype/"
 
 git mv rehype/packages/rehype-parse/ parse/
 git commit -m "mv rehype/packages/rehype-parse/ parse/"
+
+r=select
+u=https://github.com/syntax-tree/hast-util-select
+git remote add $r $u &&
+git fetch $r main --depth 1 &&
+git merge $r/main --allow-unrelated-histories -m "merge $u"
