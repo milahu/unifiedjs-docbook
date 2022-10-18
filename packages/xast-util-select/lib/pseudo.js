@@ -169,9 +169,9 @@ function anyLink(_, element) {
 function checked(_, element) {
   if (isElement(element, ['input', 'menuitem'])) {
     return Boolean(
-      element.properties &&
-        (element.properties.type === 'checkbox' ||
-          element.properties.type === 'radio') &&
+      element.attributes &&
+        (element.attributes.type === 'checkbox' ||
+          element.attributes.type === 'radio') &&
         hasProperty(element, 'checked')
     )
   }

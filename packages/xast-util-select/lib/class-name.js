@@ -11,7 +11,7 @@
 export function className(query, element) {
   /** @type {Array<string>} */
   // @ts-expect-error Assume array.
-  const value = element.properties.className || []
+  const value = element.attributes.className || []
   let index = -1
 
   if (query.classNames) {

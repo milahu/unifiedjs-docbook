@@ -9,5 +9,5 @@
  * @returns {boolean}
  */
 export function id(query, element) {
-  return Boolean(element.properties && element.properties.id === query.id)
+  return Boolean(element.attributes && element.attributes.id === query.id)
 }

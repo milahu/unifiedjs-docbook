@@ -76,8 +76,8 @@ function exists(_, element, info) {
 function exact(query, element, info) {
   return Boolean(
     hasProperty(element, info.property) &&
-      element.properties &&
-      normalizeValue(element.properties[info.property], info) === query.value
+      element.attributes &&
+      normalizeValue(element.attributes[info.property], info) === query.value
   )
 }
 
@@ -90,7 +90,7 @@ function exact(query, element, info) {
  * @returns {boolean}
  */
 function spaceSeparatedList(query, element, info) {
-  const value = element.properties && element.properties[info.property]
+  const value = element.attributes && element.attributes[info.property]
 
   return (
     // If this is a comma-separated list, and the query is contained in it, return
@@ -117,7 +117,7 @@ function spaceSeparatedList(query, element, info) {
  */
 function exactOrPrefix(query, element, info) {
   const value = normalizeValue(
-    element.properties && element.properties[info.property],
+    element.attributes && element.attributes[info.property],
     info
   )
 
@@ -141,9 +141,9 @@ function exactOrPrefix(query, element, info) {
 function begins(query, element, info) {
   return Boolean(
     hasProperty(element, info.property) &&
-      element.properties &&
+      element.attributes &&
       query.value &&
-      normalizeValue(element.properties[info.property], info).slice(
+      normalizeValue(element.attributes[info.property], info).slice(
         0,
         query.value.length
       ) === query.value
@@ -161,9 +161,9 @@ function begins(query, element, info) {
 function ends(query, element, info) {
   return Boolean(
     hasProperty(element, info.property) &&
-      element.properties &&
+      element.attributes &&
       query.value &&
-      normalizeValue(element.properties[info.property], info).slice(
+      normalizeValue(element.attributes[info.property], info).slice(
         -query.value.length
       ) === query.value
   )
@@ -180,9 +180,9 @@ function ends(query, element, info) {
 function contains(query, element, info) {
   return Boolean(
     hasProperty(element, info.property) &&
-      element.properties &&
+      element.attributes &&
       query.value &&
-      normalizeValue(element.properties[info.property], info).includes(
+      normalizeValue(element.attributes[info.property], info).includes(
         query.value
       )
   )

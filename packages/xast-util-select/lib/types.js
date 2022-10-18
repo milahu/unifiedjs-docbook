@@ -4,11 +4,11 @@
  *
  * @typedef {import('hast').Root} Root
  * @typedef {import('hast').Element} Element
- * @typedef {import('hast').Properties} Properties
+ * @typedef {import('hast').attributes} attributes
  * @typedef {Element|Root} HastParent
  * @typedef {import('hast').Parent['children'][number]|Root} HastNode
  * @typedef {Element['children'][number]} ElementChild
- * @typedef {Properties[string]} PropertyValue
+ * @typedef {attributes[string]} PropertyValue
  *
  * @typedef {import('css-selector-parser').Selector} Selector
  * @typedef {import('css-selector-parser').Selectors} Selectors

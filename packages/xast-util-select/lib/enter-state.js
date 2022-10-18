@@ -29,9 +29,9 @@ export function enterState(state, node) {
   /** @type {boolean|undefined} */
   let found
 
-  if (element(node) && node.properties) {
-    const lang = node.properties.xmlLang || node.properties.lang
-    const type = node.properties.type || 'text'
+  if (element(node) && node.attributes) {
+    const lang = node.attributes.xmlLang || node.attributes.lang
+    const type = node.attributes.type || 'text'
     const dir = dirProperty(node)
 
     if (lang !== undefined && lang !== null) {
@@ -40,7 +40,7 @@ export function enterState(state, node) {
     }
 
     if (schema && schema.space === 'html') {
-      if (node.properties.contentEditable === 'true') {
+      if (node.attributes.contentEditable === 'true') {
         state.editableOrEditingHost = true
         found = true
       }
@@ -77,9 +77,9 @@ export function enterState(state, node) {
         ) {
           // Check value of `<input>`.
           // @ts-expect-error something is `never` in types but this is needed.
-          dirInferred = node.properties.value
+          dirInferred = node.attributes.value
             ? // @ts-expect-error Assume string
-              dirBidi(node.properties.value)
+              dirBidi(node.attributes.value)
             : 'ltr'
         } else {
           // Check text nodes in `node`.
@@ -140,8 +140,8 @@ function dirBidi(value) {
  */
 function dirProperty(node) {
   const value =
-    element(node) && node.properties && typeof node.properties.dir === 'string'
-      ? node.properties.dir.toLowerCase()
+    element(node) && node.attributes && typeof node.attributes.dir === 'string'
+      ? node.attributes.dir.toLowerCase()
       : undefined
 
   return value === 'auto' || value === 'ltr' || value === 'rtl'

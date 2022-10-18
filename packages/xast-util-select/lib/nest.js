@@ -112,7 +112,7 @@ function generalSibling(query, _, index, parent, state) {
 }
 
 /**
- * Handles `typeIndex` and `typeCount` properties for every walker.
+ * Handles `typeIndex` and `typeCount` attributes for every walker.
  *
  * @param {Rule} query
  * @param {Parent} parent

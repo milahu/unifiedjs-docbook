@@ -141,7 +141,7 @@ Yields:
 ```js
 { type: 'element',
   name: 'p',
-  properties: {},
+  attributes: {},
   children: [ { type: 'text', value: 'Delta' } ] }
 ```
 
@@ -179,11 +179,11 @@ Yields:
 ```js
 [ { type: 'element',
     name: 'p',
-    properties: {},
+    attributes: {},
     children: [ { type: 'text', value: 'Delta' } ] },
   { type: 'element',
     name: 'p',
-    properties: {},
+    attributes: {},
     children: [ { type: 'text', value: 'Foxtrot' } ] } ]
 ```
 
