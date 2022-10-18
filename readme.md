@@ -48,6 +48,7 @@ node test/index.js
 
 - [ ] split packages into multiple git repos, use git submodules
 - [ ] implement all transforms needed for `nixpkgs/doc/**/*.xml`
+- [ ] nested `<variablelist>`, for example in `lib.attrsets.filterAttrs`
 
 ## related
 
