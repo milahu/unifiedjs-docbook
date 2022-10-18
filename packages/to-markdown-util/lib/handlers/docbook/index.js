@@ -59,7 +59,14 @@ docbookHandlers['xi:include'] = (h, node) => {
 
 
 
+// have we done the first example in a section?
+let doneFirstExampleInSection = false
+
+
+
 docbookHandlers['section'] = (h, node) => {
+
+  doneFirstExampleInSection = false
 
   /*
   return h(node, 'heading', {depth: 1}, [h(node, 'text', "asdf")]) // test ok
@@ -154,10 +161,14 @@ docbookHandlers['section'] = (h, node) => {
     ])
     */
   }
+  //console.dir({title}, {depth: 5})
+  const depth = (
+    title.children[0].type == 'text' ? 1 : 2
+  )
   return [
     //h(node, 'heading', {depth: 1}, "asdf 1"), // fail
     //h(node, 'heading', {depth: 2}, [h(node, 'text', 'asdf 2')]),
-    h(node, 'heading', {depth: 2, id}, all(h, title)), // ok
+    h(node, 'heading', {depth, id}, all(h, title)), // ok
     // TODO remove title childNode
     //...all(h, node),
     ...filter(h, node, (/** @type {Element} */ child) => child.name != 'title'), // ok
@@ -211,7 +222,7 @@ docbookHandlers['function'] = (h, node) => {
   false && console.dir({
     f: 'function',
     node,
-  }, {depth: 5});
+  }, {depth: 4});
   //throw new Error('todo')
   //return h(node, 'inlineCode', node.value) // fail
   // TODO toText
@@ -390,24 +401,31 @@ docbookHandlers['example'] = (h, node) => {
     (child) => ('name' in child && child.name == 'programlisting')
   // @ts-ignore
   ).children[0].value.trim()
-  if (programlisting.includes('\n=> ')) {
-    const [input, output] = programlisting.split('\n=> ')
-    return [
-      h(node, 'heading', {depth: 3}, [
-        {type: 'text', value: 'Example: '},
-        ...all(h, title),
-      ]),
-      h(node, 'code', {lang: 'nix'}, input),
-      h(node, 'code', output),
-    ]
-  }
-  return [
-    h(node, 'heading', {depth: 3}, [
-      {type: 'text', value: 'Example: '},
+  
+  const result = [
+    h(node, 'heading', {depth: 4}, [
       ...all(h, title),
     ]),
-    h(node, 'code', {lang: 'nix'}, programlisting),
   ]
+
+  if (programlisting.includes('\n=> ')) {
+    const [input, output] = programlisting.split('\n=> ')
+    result.push(h(node, 'code', {lang: 'nix'}, input))
+    result.push(h(node, 'code', output))
+  }
+  else {
+    result.push(h(node, 'code', {lang: 'nix'}, programlisting))
+  }
+
+  if (!doneFirstExampleInSection) {
+    result.unshift(h(node, 'heading', {depth: 3}, [
+      {type: 'text', value: 'Examples'},
+    ]))
+  }
+
+  doneFirstExampleInSection = true
+
+  return result
 }
 
 
