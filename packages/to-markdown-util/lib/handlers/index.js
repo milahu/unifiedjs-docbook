@@ -1,5 +1,7 @@
 import {all} from '../all.js'
 import {wrapChildren} from '../util/wrap-children.js'
+
+// html
 import {a} from './a.js'
 import {base} from './base.js'
 import {blockquote} from './blockquote.js'
@@ -29,6 +31,13 @@ import {table} from './table.js'
 import {text} from './text.js'
 import {textarea} from './textarea.js'
 import {wbr} from './wbr.js'
+
+// docbook
+import {section} from './docbook/section.js'
+
+const docbookHandlers = {
+  section,
+}
 
 export const handlers = {
   root,
@@ -185,7 +194,9 @@ export const handlers = {
   var: inlineCode,
   video: media,
   wbr,
-  xmp: code
+  xmp: code,
+
+  ...docbookHandlers,
 }
 
 function ignore() {}
