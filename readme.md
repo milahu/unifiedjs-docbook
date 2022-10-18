@@ -51,6 +51,7 @@ node test/index.js
 - [ ] nested `<variablelist>`, for example in `lib.attrsets.filterAttrs`
 - [ ] pretty print nix code, for example in `lib.attrsets.filterAttrsRecursive` or `lib.attrsets.mapAttrsRecursive`
 - [ ] detect nix function signatures in text, for example `Any -> Any -> Any` or `String -> Any -> { name = String; value = Any }`
+- [ ] fix `select` for xml. see [packages/xast-util-select/](packages/xast-util-select/)
 
 ## related
 
