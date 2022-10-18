@@ -1,4 +1,2 @@
 packages:
- - parse
- - to-markdown
- - to-markdown-util
+ - packages/*
