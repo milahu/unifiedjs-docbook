@@ -49,6 +49,8 @@ node test/index.js
 - [ ] split packages into multiple git repos, use git submodules
 - [ ] implement all transforms needed for `nixpkgs/doc/**/*.xml`
 - [ ] nested `<variablelist>`, for example in `lib.attrsets.filterAttrs`
+- [ ] pretty print nix code, for example in `lib.attrsets.filterAttrsRecursive` or `lib.attrsets.mapAttrsRecursive`
+- [ ] detect nix function signatures in text, for example `Any -> Any -> Any` or `String -> Any -> { name = String; value = Any }`
 
 ## related
 
