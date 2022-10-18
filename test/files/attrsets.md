@@ -33,7 +33,7 @@ let set = { a = { b = 3; }; };
 in lib.attrsets.attrByPath [ "a" "b" ] 0 set
 ```
 
-```
+```nix
 3
 ```
 
@@ -43,7 +43,7 @@ in lib.attrsets.attrByPath [ "a" "b" ] 0 set
 lib.attrsets.attrByPath [ "a" "b" ] 0 {}
 ```
 
-```
+```nix
 0
 ```
 
@@ -77,7 +77,7 @@ lib.attrsets.hasAttrByPath
   { a = { b = { c = { d = 123; }; }; }; }
 ```
 
-```
+```nix
 true
 ```
 
@@ -109,7 +109,7 @@ The value to set at the location described by `attrPath`.
 lib.attrsets.setAttrByPath [ "a" "b" ] 3
 ```
 
-```
+```nix
 { a = { b = 3; }; }
 ```
 
@@ -141,7 +141,7 @@ The nested attribute set to find the value in.
 lib.attrsets.getAttrFromPath [ "a" "b" ] { a = { b = 3; }; }
 ```
 
-```
+```nix
 3
 ```
 
@@ -151,7 +151,7 @@ lib.attrsets.getAttrFromPath [ "a" "b" ] { a = { b = 3; }; }
 lib.attrsets.getAttrFromPath [ "x" "y" ] { }
 ```
 
-```
+```nix
 error: cannot find attribute `x.y'
 ```
 
@@ -183,7 +183,7 @@ The set to get attribute values from.
 lib.attrsets.attrVals [ "a" "b" "c" ] { a = 1; b = 2; c = 3; }
 ```
 
-```
+```nix
 [ 1 2 3 ]
 ```
 
@@ -220,7 +220,7 @@ The attribute set.
 lib.attrsets.attrValues { a = 1; b = 2; c = 3; }
 ```
 
-```
+```nix
 [ 1 2 3 ]
 ```
 
@@ -254,7 +254,7 @@ The list of attribute sets to select `attr` from.
 catAttrs "a" [{a = 1;} {b = 0;} {a = 2;}]
 ```
 
-```
+```nix
 [ 1 2 ]
 ```
 
@@ -292,7 +292,7 @@ The attribute set to filter
 filterAttrs (n: v: n == "foo") { foo = 1; bar = 2; }
 ```
 
-```
+```nix
 { foo = 1; }
 ```
 
@@ -344,7 +344,7 @@ lib.attrsets.filterAttrsRecursive
   }
 ```
 
-```
+```nix
 {
      levelA = {
        example = "hi";
@@ -398,7 +398,7 @@ lib.attrsets.foldAttrs
   ]
 ```
 
-```
+```nix
 { a = [ 2 3 ]; b = [ 7 6 ]; }
 ```
 
@@ -434,7 +434,7 @@ The attribute set to recursively collect.
 lib.attrsets.collect isList { a = { b = ["b"]; }; c = [1]; }
 ```
 
-```
+```nix
 [["b"] [1]]
 ```
 
@@ -445,7 +445,7 @@ collect (x: x ? outPath)
   { a = { outPath = "a/"; }; b = { outPath = "b/"; }; }
 ```
 
-```
+```nix
 [{ outPath = "a/"; } { outPath = "b/"; }]
 ```
 
@@ -477,7 +477,7 @@ The attribute value.
 nameValuePair "some" 6
 ```
 
-```
+```nix
 { name = "some"; value = 6; }
 ```
 
@@ -512,7 +512,7 @@ lib.attrsets.mapAttrs
   { x = "foo"; y = "bar"; }
 ```
 
-```
+```nix
 { x = "x-foo"; y = "y-bar"; }
 ```
 
@@ -549,7 +549,7 @@ lib.attrsets.mapAttrs' (name: value: lib.attrsets.nameValuePair ("foo_" + name) 
    { x = "a"; y = "b"; }
 ```
 
-```
+```nix
 { foo_x = "bar-a"; foo_y = "bar-b"; }
 ```
 
@@ -586,7 +586,7 @@ lib.attrsets.mapAttrsToList (name: value: "${name}=${value}")
    { x = "a"; y = "b"; }
 ```
 
-```
+```nix
 [ "x=a" "y=b" ]
 ```
 
@@ -633,7 +633,7 @@ mapAttrsRecursive
   }
 ```
 
-```
+```nix
 {
      n = {
        a = "n-a-A";
@@ -697,7 +697,7 @@ lib.attrsets.mapAttrsRecursiveCond
   }
 ```
 
-```
+```nix
 {
      dorecur = {
        hello = "\"there\"";
@@ -739,7 +739,7 @@ Takes the name of the attribute and return the attribute's value.
 lib.attrsets.genAttrs [ "foo" "bar" ] (name: "x_${name}")
 ```
 
-```
+```nix
 { foo = "x_foo"; bar = "x_bar"; }
 ```
 
@@ -767,7 +767,7 @@ The value which is possibly a derivation.
 lib.attrsets.isDerivation (import <nixpkgs> {}).ruby
 ```
 
-```
+```nix
 true
 ```
 
@@ -777,7 +777,7 @@ true
 lib.attrsets.isDerivation "foobar"
 ```
 
-```
+```nix
 false
 ```
 
@@ -825,7 +825,7 @@ The attribute set to return if `cond` is true.
 lib.attrsets.optionalAttrs true { my = "set"; }
 ```
 
-```
+```nix
 { my = "set"; }
 ```
 
@@ -835,7 +835,7 @@ lib.attrsets.optionalAttrs true { my = "set"; }
 lib.attrsets.optionalAttrs false { my = "set"; }
 ```
 
-```
+```nix
 { }
 ```
 
@@ -883,7 +883,7 @@ lib.attrsets.zipAttrsWithNames
   ]
 ```
 
-```
+```nix
 { a = "a 11"; b = "b 101"; }
 ```
 
@@ -926,7 +926,7 @@ lib.attrsets.zipAttrsWith
   ]
 ```
 
-```
+```nix
 { a = "a 11"; b = "b 101"; c = "c 1001"; }
 ```
 
@@ -960,7 +960,7 @@ lib.attrsets.zipAttrs
   ]
 ```
 
-```
+```nix
 { a = [ 1 10 ]; b = [ 1 100 ]; c = [ 1 1000 ]; }
 ```
 
@@ -1010,7 +1010,7 @@ lib.attrsets.recursiveUpdateUntil (path: l: r: path == ["foo"])
   }
 ```
 
-```
+```nix
 {
   foo.bar = 1; # 'foo.*' from the second set
   foo.quz = 2; #
@@ -1054,7 +1054,7 @@ recursiveUpdate
   }
 ```
 
-```
+```nix
 {
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "";
@@ -1116,7 +1116,7 @@ An attribute set with attributes that carry lists of values.
 cartesianProductOfSets { a = [ 1 2 ]; b = [ 10 20 ]; }
 ```
 
-```
+```nix
 [
      { a = 1; b = 10; }
      { a = 1; b = 20; }
