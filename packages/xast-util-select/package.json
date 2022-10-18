@@ -38,8 +38,8 @@
     "index.js"
   ],
   "dependencies": {
-    "@types/hast": "^2.0.0",
     "@types/unist": "^2.0.0",
+    "@types/xast": "^1.0.2",
     "bcp-47-match": "^2.0.0",
     "comma-separated-tokens": "^2.0.0",
     "css-selector-parser": "^1.0.0",
