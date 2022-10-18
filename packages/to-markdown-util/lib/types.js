@@ -11,11 +11,11 @@
  * @typedef {import('mdast').TableContent} MdastTableContent
  * @typedef {import('mdast').RowContent} MdastRowContent
  *
- * @typedef {import('hast').Parent} Parent
- * @typedef {import('hast').Root} Root
- * @typedef {import('hast').Element} Element
- * @typedef {import('hast').Text} Text
- * @typedef {import('hast').Comment} Comment
+ * @typedef {import('xast').Parent} Parent
+ * @typedef {import('xast').Root} Root
+ * @typedef {import('xast').Element} Element
+ * @typedef {import('xast').Text} Text
+ * typedef {import('xast').Comment} Comment
  * @typedef {Element['children'][number]} ElementChild
  * @typedef {Parent['children'][number]} Child
  * @typedef {Child|Root} Node
