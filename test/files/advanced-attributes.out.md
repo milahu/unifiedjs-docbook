@@ -2,7 +2,7 @@
 
 Derivations can declare some infrequently used optional attributes.
 
-## [allowedReferences](#adv-attr-allowedReferences)<a id="adv-attr-allowedReferences"></a>
+## allowedReferences {#adv-attr-allowedReferences}
 
 The optional attribute `allowedReferences` specifies a list of legal
 references (dependencies) of the output of the builder. For example,
@@ -18,7 +18,7 @@ NixOS to check that generated files such as initial ramdisks for
 booting Linux don’t have accidental dependencies on other paths in
 the Nix store.
 
-## [allowedRequisites](#adv-attr-allowedRequisites)<a id="adv-attr-allowedRequisites"></a>
+## allowedRequisites {#adv-attr-allowedRequisites}
 
 This attribute is similar to `allowedReferences`, but it specifies
 the legal requisites of the whole closure, so all the dependencies
@@ -32,7 +32,7 @@ enforces that the output of a derivation cannot have any other
 runtime dependency than `foobar`, and in addition it enforces that
 `foobar` itself doesn't introduce any other dependency itself.
 
-## [disallowedReferences](#adv-attr-disallowedReferences)<a id="adv-attr-disallowedReferences"></a>
+## disallowedReferences {#adv-attr-disallowedReferences}
 
 The optional attribute `disallowedReferences` specifies a list of
 illegal references (dependencies) of the output of the builder. For
@@ -45,7 +45,7 @@ disallowedReferences = [ foo ];
 enforces that the output of a derivation cannot have a direct
 runtime dependencies on the derivation `foo`.
 
-## [disallowedRequisites](#adv-attr-disallowedRequisites)<a id="adv-attr-disallowedRequisites"></a>
+## disallowedRequisites {#adv-attr-disallowedRequisites}
 
 This attribute is similar to `disallowedReferences`, but it
 specifies illegal requisites for the whole closure, so all the
@@ -59,7 +59,7 @@ enforces that the output of a derivation cannot have any runtime
 dependency on `foobar` or any other derivation depending recursively
 on `foobar`.
 
-## [exportReferencesGraph](#adv-attr-exportReferencesGraph)<a id="adv-attr-exportReferencesGraph"></a>
+## exportReferencesGraph {#adv-attr-exportReferencesGraph}
 
 This attribute allows builders access to the references graph of
 their inputs. The attribute is a list of inputs in the Nix store
@@ -89,7 +89,7 @@ and the ISO-9660 image for the installation CD (which is populated
 with a Nix store containing the closure of a bootable NixOS
 configuration).
 
-## [impureEnvVars](#adv-attr-impureEnvVars)<a id="adv-attr-impureEnvVars"></a>
+## impureEnvVars {#adv-attr-impureEnvVars}
 
 This attribute allows you to specify a list of environment variables
 that should be passed from the environment of the calling user to
@@ -118,7 +118,7 @@ derivations.
 > environmental variables come from the environment of the
 > `nix-build`.
 
-## [outputHash](#adv-attr-outputHash}; )<a id="adv-attr-outputHash}; "></a>
+## outputHash {#adv-attr-outputHash}; }
 
 ]{#adv-attr-outputHashAlgo}; \[`outputHashMode`]{#adv-attr-outputHashMode}\
 These attributes declare that the derivation is a so-called
@@ -215,9 +215,8 @@ the hash in either hexadecimal or base-32 notation. (See the
 [`nix-hash` command](../command-ref/nix-hash.md) for information
 about converting to and from base-32 notation.)
 
-## [\_\_contentAddressed](#adv-attr-__contentAddressed}
-If this)<a id="adv-attr-__contentAddressed}
-If this"></a>
+## \_\_contentAddressed {#adv-attr-__contentAddressed}
+If this}
 
 &#x20;attribute is set to true, then the derivation
 outputs will be stored in a content-addressed location rather than the
@@ -226,7 +225,7 @@ This only has an effect if the `ca-derivation` experimental feature is enabled.
 
 Setting this attribute also requires setting `outputHashMode` and `outputHashAlgo` like for *fixed-output derivations* (see above).
 
-## [passAsFile](#adv-attr-passAsFile)<a id="adv-attr-passAsFile"></a>
+## passAsFile {#adv-attr-passAsFile}
 
 A list of names of attributes that should be passed via files rather
 than environment variables. For example, if you have
@@ -245,7 +244,7 @@ holding the path of the file containing the value of attribute
 builder, since most operating systems impose a limit on the size
 of the environment (typically, a few hundred kilobyte).
 
-## [preferLocalBuild](#adv-attr-preferLocalBuild)<a id="adv-attr-preferLocalBuild"></a>
+## preferLocalBuild {#adv-attr-preferLocalBuild}
 
 If this attribute is set to `true` and [distributed building is
 enabled](../advanced-topics/distributed-builds.md), then, if
@@ -254,7 +253,7 @@ to a remote machine. This is appropriate for trivial builders
 where the cost of doing a download or remote build would exceed
 the cost of building locally.
 
-## [allowSubstitutes](#adv-attr-allowSubstitutes)<a id="adv-attr-allowSubstitutes"></a>
+## allowSubstitutes {#adv-attr-allowSubstitutes}
 
 If this attribute is set to `false`, then Nix will always build this
 derivation; it will not try to substitute its outputs. This is
