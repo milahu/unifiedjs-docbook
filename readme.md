@@ -52,6 +52,10 @@ node test/index.js
 - [ ] pretty print nix code, for example in `lib.attrsets.filterAttrsRecursive` or `lib.attrsets.mapAttrsRecursive`
 - [ ] detect nix function signatures in text, for example `Any -> Any -> Any` or `String -> Any -> { name = String; value = Any }`
 - [ ] fix `select` for xml. see [packages/xast-util-select/](packages/xast-util-select/)
+- [ ] fix cross file links, example https://github.com/NixOS/nixpkgs/blob/master/doc/builders/trivial-builders.chapter.md
+  - actual link https://nixos.org/nix/manual/#adv-attr-allowSubstitutes
+  - expected link https://github.com/NixOS/nix/blob/master/doc/manual/src/language/advanced-attributes.md#adv-attr-allowSubstitutes
+  - ... or shorten the ID to `advanced-attributes.md#allowSubstitutes`
 
 ## related
 
