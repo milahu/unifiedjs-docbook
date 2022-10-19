@@ -26,7 +26,7 @@ node test/index.js
 * [packages/to-markdown-util/lib/handlers/](packages/to-markdown-util/lib/handlers/)
 * [packages/mdast-util-to-markdown/lib/handle/heading.js](packages/mdast-util-to-markdown/lib/handle/heading.js)
 * [test/index.js](test/index.js)
-* [test/files/attrsets.md](test/files/attrsets.md)
+* [test/files/attrsets.md](test/files/attrsets.md) ([github](https://github.com/milahu/unifiedjs-docbook/blob/main/test/files/attrsets.md)) ([gitlab](https://gitlab.com/milahu/unifiedjs-docbook/-/blob/main/test/files/attrsets.md)) ([gitea](https://try.gitea.io/milahu/unifiedjs-docbook/src/branch/main/test/files/attrsets.md)) ([srht](https://git.sr.ht/~milahu/unifiedjs-docbook/tree/main/item/test/files/attrsets.md))
 * [test/files/attrsets.xml](test/files/attrsets.xml)
 
 ## design goals
