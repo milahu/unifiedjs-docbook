@@ -4,6 +4,8 @@ const inputFiles = [
   'advanced-attributes.md', // https://github.com/NixOS/nix/raw/master/doc/manual/src/language/advanced-attributes.md
 ]
 
+// override with first CLI argument:
+// node test/index.js path/to/input-file.xml
 const inputFile = inputFiles.slice(-1)[0]
 
 // debug
@@ -78,9 +80,8 @@ function date() {
   return new Date().toLocaleString('af')
 }
 
-
-
-const inputPath = path.join(testDir, 'files', inputFile);
+// override with first CLI argument
+const inputPath = process.argv[2] || path.join(testDir, 'files', inputFile);
 
 const inputExtension = inputPath.split('.').slice(-1)[0]
 
