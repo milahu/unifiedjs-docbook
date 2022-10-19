@@ -31,7 +31,8 @@ node test/index.js
 
 ## design goals
 
-* the generated markdown should be pretty and functional on the github blob API
+* ~~the generated markdown should be pretty and functional on the github blob API~~
+  * such "workaround-flavored markdown" is too verbose? example: heading IDs for github blob API ([github](https://github.com/milahu/unifiedjs-docbook/blob/ee9a54d4c6b96171980377f7cd9b4a2371b49fb3/test/files/attrsets.md))
 * the converter should be "hackable": just edit some javascript files
 * performance is secondary
 
