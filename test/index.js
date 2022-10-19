@@ -1,3 +1,11 @@
+const inputFiles = [
+  'debug-section-title.xml',
+  'attrsets.xml', // https://github.com/NixOS/nixpkgs/blob/7a79469a24a71c26cb61b53590cb09ad6192654f/doc/functions/library/attrsets.xml
+  'advanced-attributes.md', // https://github.com/NixOS/nix/raw/master/doc/manual/src/language/advanced-attributes.md
+]
+
+const inputFile = inputFiles.slice(-1)[0]
+
 // debug
 let titleCounter = 0
 
@@ -15,6 +23,10 @@ import {unified} from 'unified'
 // FIXME resolutions in package.json
 //import docbookParse from "docbook-parse"
 import docbookParse from "../packages/parse/index.js"
+
+import markdownParse from "remark-parse"
+
+import markdownExtensionDirective from 'remark-directive'
 
 // FIXME resolutions in package.json
 //import docbookToMarkdown from "docbook-to-markdown"
@@ -68,14 +80,13 @@ function date() {
 
 
 
-/*
-https://github.com/NixOS/nixpkgs/blob/7a79469a24a71c26cb61b53590cb09ad6192654f/doc/functions/library/attrsets.xml
-*/
-//const inputPath = 'functions/library/attrsets.xml'; // nixpkgs/doc/
-//const inputPath = path.join(testDir, 'files/debug-section-title.xml');
-const inputPath = path.join(testDir, 'files/attrsets.xml');
+const inputPath = path.join(testDir, 'files', inputFile);
 
-const outputPath = inputPath.split('.').slice(0, -1).join('.') + '.md'
+const inputExtension = inputPath.split('.').slice(-1)[0]
+
+const outputExtension = inputExtension == 'md' ? 'out.md' : 'md'
+
+const outputPath = inputPath.split('.').slice(0, -1).join('.') + '.' + outputExtension
 
 const inputText = (
   fs.readFileSync(inputPath, 'utf8')
@@ -104,7 +115,129 @@ console.log(tree)
 // TODO can also be Text or Comment (or so)
 //type Handler = (h: H, e: Element) => any;
 
+
+
+const markdownStringifyOptions = {
+  bullet: '-',
+  //fence: '~',
+  fences: true,
+  incrementListMarker: false,
+};
+
+import {visit} from 'unist-util-visit'
+
+
+// https://unifiedjs.com/explore/package/remark-directive/
+// This plugin is an example to let users write HTML with directives.
+// It’s informative but rather useless.
+// See below for others examples.
+/** @type {import('unified').Plugin<[], import('mdast').Root>} */
+//function myRemarkPlugin()
+function markdownExtensionTodo() {
+  return (tree) => {
+    visit(tree, (node) => {
+      if (
+        // TODO shorter? CSS selector?
+        node.type === 'list' &&
+        node.children[0].type === 'listItem' &&
+        node.children[0].children[0].type == 'paragraph' &&
+        node.children[0].children[0].children[0].type == 'text' &&
+        node.children[0].children[0].children[0].value == '[' &&
+        node.children[0].children[0].children[1].type == 'inlineCode' &&
+        node.children[0].children[0].children[2].type == 'text' &&
+        node.children[0].children[0].children[2].value.startsWith(']{#') &&
+        node.children[0].children[0].children[2].value.endsWith('}') &&
+        node.children[0].children[0].children[3].type == 'break' &&
+        true
+      ) {
+        const newNodes = [
+          /* test
+          {type: 'text', value: 'hello'},
+          {type: 'text', value: 'asdf'},
+          {type: 'heading', children: [{type: 'text', value: 'head'}]},
+          {type: 'text', value: 'hello'},
+          */
+        ]
+        // loop list items
+        for (let i = 0; i < node.children.length; i++) {
+          const item = node.children[i]
+          const title = item.children[0].children[1].value
+          const id = item.children[0].children[2].value.slice(3, -1)
+
+          //const data = node.data || (node.data = {})
+          //const attributes = node.attributes || {}
+
+          //console.dir({ node, title, id, data, attributes })
+          //throw new Error("todo")
+
+          item.children[0].children.shift()
+          item.children[0].children.shift()
+          item.children[0].children.shift()
+          item.children[0].children.shift()
+
+          /* FIXME handle multiple titles -> seek util type == "break"
+          [`outputHash`]{#adv-attr-outputHash}; [`outputHashAlgo`]{#adv-attr-outputHashAlgo}; [`outputHashMode`]{#adv-attr-outputHashMode}\
+          */
+
+          /* FIXME not working. heading and paragraph are joined in the same line
+          item.children[0].children.unshift({
+            type: 'heading',
+            depth: 2, // TODO get depth from context
+            children: [{type: 'text', value: title}],
+            id,
+          })
+          item.type = 'root'
+          */
+
+          newNodes.push({
+            type: 'heading',
+            depth: 2, // TODO get depth from context
+            children: [{type: 'text', value: title}],
+            id,
+          })
+          newNodes.push(...item.children)
+        }
+
+        /* FIXME not working. heading and paragraph are joined in the same line
+        node.type = 'root'
+        */
+
+        const newNode = {
+          // generic markdown container to "spread" all children into parent node
+          //type: 'div', // Error: Cannot handle unknown node `div`
+          //type: '', // Error: Cannot handle unknown node ``
+          //type: 'paragraph', // wrong
+          //type: 'html', // no output
+          //type: 'markdown', // Error: Cannot handle unknown node `markdown`
+          type: 'root', // yes! mdast-util-to-markdown/lib/handle/root.js
+          children: newNodes,
+        }
+
+        // TODO replace node. this will only add props, not remove props
+        Object.assign(node, newNode)
+
+        /*
+        console.dir(node.children[0]) // first paragraph
+        throw new Error('todo')
+
+        // example
+
+        const data = node.data || (node.data = {})
+        const hast = h(node.name, node.attributes)
+
+        data.hName = hast.tagName
+        data.hProperties = hast.properties
+        */
+      }
+    })
+  }
+}
+
+
+
 const processor = (
+
+inputExtension == 'xml' ? ( // docbook -> markdown
 
 unified()
 
@@ -120,17 +253,41 @@ unified()
   .use(docbookToMarkdown)
 
   // extensions for markdownStringify ...
+  // https://github.com/syntax-tree/mdast-util-to-markdown#list-of-extensions
 
   // github-flavored markdown: markdown tables, ...
   .use(markdownExtensionGithub)
 
+/* TODO headings: add extension for markdownStringify
+
+### [heading](#custom-heading-id)<a id="custom-heading-id"/>
+
+[link to custom-heading-id](#custom-heading-id)
+
+*/
+
+
+
+  // these extensions are useful for converting markdown to html ...
+
+  // custom #id annotations for headings
+  // input: ### My Great Heading {#custom-id}
+  // output: <h3 id="custom-id">My Great Heading</h3>
+  // https://github.com/imcuttle/remark-heading-id
+
+  // https://github.com/kevin940726/remark-code-import
+  // populate code blocks from files
+
+  // https://github.com/freesewing/freesewing/tree/develop/packages/remark-jargon
+  // supports jargon syntax with a centrally managed file of jargon terms/definition
+
+  // https://github.com/remarkjs/remark-lint
+  // markdown code style linter. potentially useful for detecting syntax errors in imported files
+
+
+
   // markdown tree -> markdown string
-  .use(markdownStringify, {
-    bullet: '*',
-    //fence: '~',
-    fences: true,
-    incrementListMarker: false,
-  })
+  .use(markdownStringify, markdownStringifyOptions)
 
   // markdown tree -> pretty markdown string
   // remark-prettier registers a unified compiler.
@@ -148,7 +305,31 @@ unified()
   })
   */
 
+) :
+
+inputExtension == 'md' ? ( // markdown -> markdown
+
+unified()
+
+  .use(markdownParse)
+
+  .use(markdownExtensionDirective)
+
+  // github-flavored markdown: markdown tables, ...
+  .use(markdownExtensionGithub)
+
+  .use(markdownExtensionTodo)
+
+  // markdown tree -> markdown string
+  .use(markdownStringify, markdownStringifyOptions)
+
+) :
+
+null
+
 );
+
+
 
 (
 processor
