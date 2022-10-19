@@ -17,6 +17,9 @@
     "vfile-reporter": "^7.0.4"
   },
   "dependencies": {
-    "remark-gfm": "^3.0.0"
+    "remark-directive": "^2.0.1",
+    "remark-gfm": "^3.0.0",
+    "remark-parse": "workspace:^10.0.0",
+    "unist-util-visit": "^4.0.0"
   }
 }
