@@ -49,6 +49,11 @@ import report from 'vfile-reporter';
 //import {select, selectAll} from '../packages/xast-util-select/index.js'
 //import {matches, select, selectAll} from 'hast-util-select'
 
+// using a patched local version to render heading IDs
+// https://www.markdownguide.org/extended-syntax/#heading-ids
+// alternatives: these render to html (not to markdown)
+// https://github.com/imcuttle/remark-heading-id
+// https://github.com/markedjs/marked-custom-heading-id
 import markdownStringify from 'remark-stringify' // md -> str
 //import markdownStringify from '../packages/remark/packages/remark-stringify/index.js' // md -> str
 
