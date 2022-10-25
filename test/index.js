@@ -2,6 +2,8 @@ const inputFiles = [
   'debug-section-title.xml',
   'attrsets.xml', // https://github.com/NixOS/nixpkgs/blob/7a79469a24a71c26cb61b53590cb09ad6192654f/doc/functions/library/attrsets.xml
   'advanced-attributes.md', // https://github.com/NixOS/nix/raw/master/doc/manual/src/language/advanced-attributes.md
+
+  'attrsets.xml', // https://github.com/NixOS/nixpkgs/blob/7a79469a24a71c26cb61b53590cb09ad6192654f/doc/functions/library/attrsets.xml
 ]
 
 // override with first CLI argument:

@@ -367,6 +367,8 @@ docbookHandlers['variablelist'] = (h, node) => [
   // TODO wording
   //h(node, 'heading', {depth: 3}, 'Arguments'),
   h(node, 'heading', {depth: 3}, [h(node, 'text', 'Parameters')]),
+  // no repro for Error: Cannot handle value `[object Object]`, expected node
+  //node.children.reduce((acc, node) => {
   ...node.children.reduce((acc, node) => {
     // varlistentry
     const varname = node.children[0].children[0]
@@ -377,7 +379,11 @@ docbookHandlers['variablelist'] = (h, node) => [
     // TODO depth from context
     acc.push(h(node, 'heading', {depth: 4}, all(h, varname)))
     //acc.push(h(node, 'paragraph', ...all(h, paras))) // fail
+    
+    // no repro for Error: Cannot handle value `[object Object]`, expected node
+    //acc.push(paras.map(para => h(node, 'paragraph', all(h, para))))
     acc.push(...paras.map(para => h(node, 'paragraph', all(h, para))))
+
     return acc
   }, [])
 ]
@@ -404,7 +410,9 @@ docbookHandlers['example'] = (h, node) => {
   
   const result = [
     h(node, 'heading', {depth: 4, id}, [
-      ...all(h, title),
+      // repro for Error: Cannot handle value `[object Object]`, expected node
+      all(h, title),
+      //...all(h, title),
     ]),
   ]
 
